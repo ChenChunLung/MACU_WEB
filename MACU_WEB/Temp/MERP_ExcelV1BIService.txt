@@ -1,0 +1,301 @@
+﻿
+
+
+
+
+
+        //改從AccountSubjects字串取得AccountNo,AccountName,DetailAccountNo; Amount金額改從LocalCurrencyAmount
+        //20201223 CCL+ /////////////////////////////////////////////////////////////////////////////
+        public static bool SaveAsExcelByOptions6(MERP_ProcessExcelOptions p_oOption,
+                                           String p_sPROG_ID, HttpServerUtilityBase p_oServer)
+        {
+            //把Mod的砍掉Row只留下1,2,3,4,5,6,7,8; Col只留下1[科目代碼],2[科目名稱],3[店名,實績]
+            //然後依店家Id找出會科
+            //依店家ID讀取DB
+            //Origin
+            int l_iRowIndex = 0;
+            int l_iShopCount = 1;
+            const int TOPCOLS = 2;
+            const string TABLENAME = "損益表";
+
+            DataSet l_oDataSet = new DataSet();
+            //要比對的DataSet            
+            List<TmpExcelItem> l_oComAccNoAmount = new List<TmpExcelItem>();
+
+
+            m_oWorkbook = new XLWorkbook();
+            l_oDataSet = m_FaJournalV1DBService.FA_JournalV1_SqlGetDataListByOptions2(p_oOption);
+
+            //讀取第一個Sheet 
+            IXLWorksheet l_oWooksheet = m_oWorkbook.Worksheets.Add(TABLENAME);
+
+
+            IXLRange l_oRange5 = l_oWooksheet.Range(l_oWooksheet.Cell(1, 1).Address, l_oWooksheet.Cell(2, 1).Address);
+            l_oRange5.Style.Font.FontName = "微軟正黑體";
+            l_oRange5.Style.Font.FontSize = 14;
+
+            IXLRange l_oRange6 = l_oWooksheet.Range(l_oWooksheet.Cell(4, 1).Address, l_oWooksheet.Cell(5, 1).Address);
+            l_oRange6.Style.Font.FontName = "微軟正黑體";
+            l_oRange6.Style.Font.FontSize = 11;
+
+            //Styleing
+            IXLRange l_oRange = l_oWooksheet.Range(l_oWooksheet.Cell(7, 1).Address, l_oWooksheet.Cell(8, 3).Address);
+            l_oRange.Style.Fill.BackgroundColor = XLColor.BallBlue;
+            l_oRange.Style.Font.FontColor = XLColor.White;
+            l_oRange.Style.Font.FontName = "微軟正黑體";
+            l_oRange.Style.Font.FontSize = 11;
+
+            //202006月帳
+            l_oWooksheet.Cell(1, 1).Value = "202006月帳";
+            //多部門損益表
+            l_oWooksheet.Cell(2, 1).Value = "多部門損益表";
+
+
+            //起迄日期：2020-07-01 ~ 2020-07-31
+            l_oWooksheet.Cell(4, 1).Value = "起迄日期：" + p_oOption.m_sStartDate + " ~ " + p_oOption.m_sEndDate;
+            //科目代號
+            l_oWooksheet.Cell(7, 1).Value = "科目代號";
+            //科目名稱
+            l_oWooksheet.Cell(7, 2).Value = "科目名稱";
+            //實績
+            l_oWooksheet.Cell(8, 3).Value = "實績";
+
+            IXLRange l_oRange2 = l_oWooksheet.Range(l_oWooksheet.Cell(7, 1).Address, l_oWooksheet.Cell(8, 1).Address);
+            l_oRange2.Merge();
+            IXLRange l_oRange3 = l_oWooksheet.Range(l_oWooksheet.Cell(7, 2).Address, l_oWooksheet.Cell(8, 2).Address);
+            l_oRange3.Merge();
+
+            //Compare
+            foreach (DataRow row in l_oDataSet.Tables[0].Rows)
+            {
+                ++l_iRowIndex;
+
+                string ComAccountNo = "";
+                TmpExcelItem l_oTmpItem = null;
+                TmpExcelItem l_oProcessedItem = null;
+                //科目代號
+                //string l_sAccountSubjects = row.Field<string>("AccountSubjects"); //處理Subjects字串
+                //l_oProcessedItem = ProcessAccountSubjects(l_sAccountSubjects);
+
+                if (!string.IsNullOrEmpty(l_oProcessedItem.m_ComDetailAccNo))
+                {
+                    //string ComAccountNo = row.Field<string>("AccountNo");
+
+                    ComAccountNo = l_oProcessedItem.m_ComAccountNo + "-" +
+                        l_oProcessedItem.m_ComDetailAccNo;
+                }
+                else
+                {
+                    ComAccountNo = l_oProcessedItem.m_ComAccountNo;
+                }
+
+                if (l_iRowIndex == 1)
+                {
+
+                    //部門：
+                    l_oWooksheet.Cell(5, 1).Value = "部門：" + row.Field<string>("DepartName");
+                    //部門名稱
+                    l_oWooksheet.Cell(7, 3).Value = row.Field<string>("DepartName");
+                }
+
+                //如果有此[科目代碼+明細科目代碼]
+                //if ((l_oComDataTable.Rows.Count == 0) || (l_oComDataTable.Rows.Find(l_iRowIndex-1) == null))
+                //if ( (l_oComAccountNo.Count() == 0) || (l_oComAccountNo.Contains(ComAccountNo) == false) )
+                if ((l_oComAccNoAmount.Count() == 0) || (l_oComAccNoAmount.Find(m => m.m_ComAccountNo == ComAccountNo) == null))
+                {
+                    //DataRow tmprow = new DataRow();                       
+                    //
+
+                    //DataRow tmprow;
+                    //tmprow = l_oComDataTable.NewRow();
+                    //tmprow["AccountNo"] = ComAccountNo;
+                    l_oTmpItem = new TmpExcelItem();
+                    l_oTmpItem.m_ComAccountNo = ComAccountNo;
+                    l_oComAccNoAmount.Add(l_oTmpItem);
+
+                    string tmpAmount = "";
+                    //借方金額
+                    if (!string.IsNullOrEmpty(row.Field<string>("DebitAmount")))
+                    {
+                        //借方金額
+                        tmpAmount = row.Field<string>("DebitAmount");
+
+                    }
+                    else
+                    {
+                        //貸方金額
+                        tmpAmount = row.Field<string>("CreditAmount");
+                    }
+
+                    //tmprow["Amount"] = tmpAmount;
+                    //l_oComDataTable.Rows.Add(tmprow);
+                    //l_oComAmount.Add(tmpAmount);
+                    l_oTmpItem.m_ComAmount = tmpAmount;
+
+                    //科目名稱 - 明細科目名稱
+                    //l_oTmpItem.m_ComAccName = row.Field<string>("SubjectName") + " " +
+                    //    row.Field<string>("DetailSubjectName");
+                    l_oTmpItem.m_ComAccName = l_oProcessedItem.m_ComAccName;
+
+                }
+                else
+                {
+                    //找出該[科目代碼+明細科目代碼]的金額累加
+                    string tmpamount = "", tmpnextamount = "";
+                    //DataRow tmprow;
+                    //tmprow = l_oComDataTable.Rows.Find(ComAccountNo);
+                    //tmpamount = tmprow[1].ToString();
+                    //tmpamount = l_oComDataTable.Rows.Find(ComAccountNo).Field<string>(1);
+                    l_oTmpItem = l_oComAccNoAmount.Find(m => m.m_ComAccountNo == ComAccountNo);
+                    tmpamount = l_oTmpItem.m_ComAmount;
+
+
+                    //借方金額
+                    if (!string.IsNullOrEmpty(row.Field<string>("DebitAmount")))
+                    {
+                        //借方金額
+                        tmpnextamount = row.Field<string>("DebitAmount");
+
+                    }
+                    else
+                    {
+                        //貸方金額
+                        tmpnextamount = row.Field<string>("CreditAmount");
+                    }
+
+                    tmpamount = Convert.ToString(Int32.Parse(tmpamount) + Int32.Parse(tmpnextamount));
+                    l_oTmpItem.m_ComAmount = tmpamount; //累加值
+                                                        //l_oComDataTable.Rows.Find(ComAccountNo)[1] = tmpamount;
+
+                    //科目名稱 - 明細科目名稱
+                    //l_oTmpItem.m_ComAccName = row.Field<string>("SubjectName") + " " +
+                    //    row.Field<string>("DetailSubjectName");
+                    l_oTmpItem.m_ComAccName = l_oProcessedItem.m_ComAccName;
+                }
+
+
+
+
+            }
+
+            l_iRowIndex = 0;
+            foreach (TmpExcelItem row in l_oComAccNoAmount)
+            {
+                ++l_iRowIndex;
+                //科目代號
+                l_oWooksheet.Cell(l_iRowIndex + 8, 1).Value = row.m_ComAccountNo;
+                //科目名稱 - 明細科目名稱
+                l_oWooksheet.Cell(l_iRowIndex + 8, 2).Value = row.m_ComAccName;
+                //借方金額
+                l_oWooksheet.Cell(l_iRowIndex + 8, 3).Value = row.m_ComAmount;
+            }
+
+            //Main
+            /*
+            foreach (DataRow row in l_oDataSet.Tables[0].Rows)
+            {
+                ++l_iRowIndex;
+                //IXLCells cells = l_oWooksheet.Rows(l_iRowIndex.ToString()).Cells();
+                //foreach(IXLCell cell in cells)
+                //{
+                //cell.Value = 
+                //}
+
+
+                //科目代號
+                string l_sDetailAccountNo = row.Field<string>("DetailAccountNo");
+                if (!string.IsNullOrEmpty(l_sDetailAccountNo))
+                {
+
+
+                    l_oWooksheet.Cell(l_iRowIndex + 8, 1).Value = row.Field<string>("AccountNo") + "-" +
+                        l_sDetailAccountNo;
+                    string ComAccountNo = l_oWooksheet.Cell(l_iRowIndex + 8, 1).Value.ToString();
+
+
+                    l_oComDataTable.Rows.Add(new DataColumn(ComAccountNo));
+                }
+                else
+                {
+                    l_oWooksheet.Cell(l_iRowIndex + 8, 1).Value = row.Field<string>("AccountNo");
+                }
+
+                //科目名稱 - 明細科目名稱
+                l_oWooksheet.Cell(l_iRowIndex + 8, 2).Value = row.Field<string>("SubjectName") + " " +
+                    row.Field<string>("DetailSubjectName");
+
+
+                if (l_iRowIndex == 1)
+                {
+
+                    //部門：
+                    l_oWooksheet.Cell(5, 1).Value = "部門：" + row.Field<string>("DepartName");
+                    //部門名稱
+                    l_oWooksheet.Cell(7, 3).Value = row.Field<string>("DepartName");
+                }
+
+
+                //借方金額
+                if (!string.IsNullOrEmpty(row.Field<string>("DebitAmount")))
+                {
+                    //借方金額
+                    l_oWooksheet.Cell(l_iRowIndex + 8, 3).Value = row.Field<string>("DebitAmount");
+                }
+                else
+                {
+                    //貸方金額
+                    l_oWooksheet.Cell(l_iRowIndex + 8, 3).Value = row.Field<string>("CreditAmount");
+                }
+
+
+
+
+            }
+            */
+
+            //Styling
+            IXLRange l_oRange4 = l_oWooksheet.Range(l_oWooksheet.Cell(9, 1).Address, l_oWooksheet.Cell(l_iRowIndex + 8, TOPCOLS + l_iShopCount).Address);
+            l_oRange4.Style.Font.FontColor = XLColor.Black;
+            l_oRange4.Style.Font.FontName = "微軟正黑體";
+            l_oRange4.Style.Font.FontSize = 11;
+
+
+            //定義資料使用到的Range範圍 起始/結束Cell
+            var l_oFirstCell = l_oWooksheet.FirstCellUsed();
+            var l_oEndCell = l_oWooksheet.LastCellUsed();
+            //使用資料起始/結束 Cell, 來定義一個資料範圍 (利用Cell Address來定位)
+            var l_oData = l_oWooksheet.Range(l_oFirstCell, l_oEndCell);
+
+
+            //將資料範圍轉型
+            try
+            {
+                m_oModTable = l_oData.AsTable();
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+            }
+
+            //複製一份要修改的副本WorkSheet到新的ModWookbook 才能Save
+            m_oModWorkbook = new XLWorkbook();
+            try
+            {
+
+                m_oWorkbook.Worksheet(1).CopyTo(m_oModWorkbook, m_oWorkbook.Worksheet(1).Name);
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+            }
+
+
+
+            SaveAsExcel(p_sPROG_ID, p_oServer);//
+
+            return false;
+        }
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////

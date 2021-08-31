@@ -1,0 +1,993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="DetailAccNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DetailAccName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountFlag" Type="nvarchar" MaxLength="1" />
+          <Property Name="PrintOrder" Type="int" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="UpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FA_ClassInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FA_Class_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="FA_Class_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="FA_Class_Month" Type="int" Nullable="false" />
+          <Property Name="FA_OrderNo" Type="int" Nullable="false" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FA_FaJournal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubpType" Type="nvarchar" MaxLength="10" />
+          <Property Name="DebitAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreditAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="CurrencyName" Type="nvarchar" MaxLength="10" />
+          <Property Name="FiscalYear" Type="nvarchar" MaxLength="10" />
+          <Property Name="AccountPeriod" Type="nvarchar" MaxLength="10" />
+          <Property Name="GUID" Type="nvarchar(max)" />
+          <Property Name="SubpDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubpNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubpSummary" Type="nvarchar(max)" />
+          <Property Name="SubjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccountNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="DetailAccountNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="DetailSubjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepartNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="DepartName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjectNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="ProjectAbbr" Type="nvarchar" MaxLength="50" />
+          <Property Name="ObjectCateg" Type="nvarchar" MaxLength="10" />
+          <Property Name="ObjectNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="CurrencyNo" Type="nvarchar" MaxLength="5" />
+          <Property Name="ExchangeRate" Type="nvarchar" MaxLength="10" />
+          <Property Name="OriginCurrency" Type="nvarchar" MaxLength="20" />
+          <Property Name="LocalCurrencyAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="Spare1No" Type="nvarchar" MaxLength="10" />
+          <Property Name="Spare1Abbr" Type="nvarchar" MaxLength="10" />
+          <Property Name="Spare2No" Type="nvarchar" MaxLength="10" />
+          <Property Name="Spare2Abbr" Type="nvarchar" MaxLength="10" />
+          <Property Name="Spare3No" Type="nvarchar" MaxLength="10" />
+          <Property Name="Spare3Abbr" Type="nvarchar" MaxLength="10" />
+          <Property Name="Spare4No" Type="nvarchar" MaxLength="10" />
+          <Property Name="Spare4Abbr" Type="nvarchar" MaxLength="10" />
+          <Property Name="Spare5No" Type="nvarchar" MaxLength="10" />
+          <Property Name="Spare5Abbr" Type="nvarchar" MaxLength="10" />
+          <Property Name="Summary1" Type="nvarchar(max)" />
+          <Property Name="AccountSubjects" Type="nvarchar(max)" />
+          <Property Name="Summary" Type="nvarchar(max)" />
+          <Property Name="Category" Type="nvarchar" MaxLength="20" />
+          <Property Name="SubjectAlias" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FA_HealthInsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Heal_Rate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Heal_RateBeginDate" Type="nvarchar" MaxLength="30" />
+          <Property Name="Heal_LaborInsBurdenRatio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Heal_ComInsBurdenRatio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Heal_GovInsBurdenRatio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Heal_AverhouseholdsNum" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsValid" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="UpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FA_JournalV1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubpDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubpNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccountNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="SubjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DetailAccountNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="DetailSubjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepartNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="DepartName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreditAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="DebitAmount" Type="nvarchar" MaxLength="20" />
+          <Property Name="FiscalYear" Type="nvarchar" MaxLength="10" />
+          <Property Name="AccountPeriod" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsValid" Type="int" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FA_LaborHealthIns">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartName" Type="nvarchar" MaxLength="30" />
+          <Property Name="PlusInsCompany" Type="nvarchar" MaxLength="30" />
+          <Property Name="Coding" Type="nvarchar" MaxLength="10" />
+          <Property Name="LaborIns" Type="nvarchar(max)" />
+          <Property Name="HealthIns" Type="nvarchar(max)" />
+          <Property Name="GroupIns" Type="nvarchar" MaxLength="5" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="20" />
+          <Property Name="OnJobDate" Type="nvarchar" MaxLength="30" />
+          <Property Name="ResignDate" Type="nvarchar" MaxLength="30" />
+          <Property Name="Seniority" Type="nvarchar" MaxLength="20" />
+          <Property Name="KeepSecret" Type="nvarchar" MaxLength="5" />
+          <Property Name="Salary" Type="nvarchar(max)" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="20" />
+          <Property Name="DataYear" Type="nvarchar" MaxLength="5" />
+          <Property Name="DataMonth" Type="nvarchar" MaxLength="5" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="UpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FA_LaborHealthInsV1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartName" Type="nvarchar" MaxLength="30" />
+          <Property Name="PlusInsCompany" Type="nvarchar" MaxLength="30" />
+          <Property Name="MemberName" Type="nvarchar" MaxLength="20" />
+          <Property Name="LaborIns" Type="nvarchar(max)" />
+          <Property Name="HealthIns" Type="nvarchar(max)" />
+          <Property Name="Dependents" Type="nvarchar" MaxLength="5" />
+          <Property Name="OnJobDate" Type="nvarchar" MaxLength="30" />
+          <Property Name="ResignDate" Type="nvarchar" MaxLength="30" />
+          <Property Name="DataYear" Type="nvarchar" MaxLength="5" />
+          <Property Name="DataMonth" Type="nvarchar" MaxLength="5" />
+          <Property Name="LHInsType" Type="int" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="UpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FA_LaborInsSet">
+          <Key>
+            <PropertyRef Name="LabInsSetNo" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LabInsSetNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrdAccidentInsRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EmployInsRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PersonalInsRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LaborBurdenRatio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ComBurdenRatio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GovBurdenRatio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CommuteDisaInsRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IndustryDisaInsRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OccuDisaInsRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OccuDisComBurdenRatio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OnBeginDate" Type="nvarchar" MaxLength="30" />
+          <Property Name="LaborRetireRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LaborSubsFund" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LaborSubsFundRate" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="IsValid" Type="int" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FA_LaborInsSetMapComSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlusInsCompany" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LabInsSetNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FA_LaborSubsFundSet">
+          <Key>
+            <PropertyRef Name="PlusInsCompany" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlusInsCompany" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LaborSubsFund" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FileContent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Size" Type="int" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DirType" Type="nvarchar" MaxLength="5" />
+          <Property Name="ProgCatg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataYear" Type="nvarchar" MaxLength="5" />
+          <Property Name="DataMonth" Type="nvarchar" MaxLength="5" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HR_ManagerInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManagerID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ManagerName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ManagerNickNa" Type="nvarchar" MaxLength="20" />
+          <Property Name="ManagerTelPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="ManagerMobiPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="ManageShopList" Type="nvarchar(max)" />
+          <Property Name="ManageBranchID" Type="nvarchar" MaxLength="5" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProgContent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MenuID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProgInfoID" Type="int" Nullable="false" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoreGroupSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreGroupNo" Type="int" Nullable="false" />
+          <Property Name="StoreGroupType" Type="nvarchar" MaxLength="10" />
+          <Property Name="StoreGroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StoreGroupDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="StoreGroupSIDList" Type="nvarchar(max)" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoreInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" />
+          <Property Name="Kind" Type="int" />
+          <Property Name="Memo" Type="nvarchar(max)" />
+          <Property Name="Group_ID" Type="int" />
+          <Property Name="BranchArea_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="OrderArea_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="PrePaidScaleGroup_ID" Type="int" />
+          <Property Name="ConveyKind_ID" Type="int" />
+          <Property Name="BeginDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="TelPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="FaxPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Balance" Type="float" />
+          <Property Name="OptimisticLockField" Type="int" />
+          <Property Name="GCRecord" Type="int" />
+          <Property Name="MobileStoreID" Type="nvarchar" MaxLength="100" />
+          <Property Name="ManageKind" Type="nvarchar" MaxLength="5" />
+          <Property Name="CreateDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateUser" Type="nvarchar" MaxLength="10" />
+          <Property Name="UpdateUser" Type="nvarchar" MaxLength="10" />
+          <Property Name="Disabled" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="MERPModelStoreContainer">
+          <EntitySet Name="AccountInfo" EntityType="Self.AccountInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FA_ClassInfo" EntityType="Self.FA_ClassInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FA_FaJournal" EntityType="Self.FA_FaJournal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FA_HealthInsSet" EntityType="Self.FA_HealthInsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FA_JournalV1" EntityType="Self.FA_JournalV1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FA_LaborHealthIns" EntityType="Self.FA_LaborHealthIns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FA_LaborHealthInsV1" EntityType="Self.FA_LaborHealthInsV1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FA_LaborInsSet" EntityType="Self.FA_LaborInsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FA_LaborInsSetMapComSet" EntityType="Self.FA_LaborInsSetMapComSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FA_LaborSubsFundSet" EntityType="Self.FA_LaborSubsFundSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileContent" EntityType="Self.FileContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HR_ManagerInfo" EntityType="Self.HR_ManagerInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgContent" EntityType="Self.ProgContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreGroupSet" EntityType="Self.StoreGroupSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreInfo" EntityType="Self.StoreInfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FileContent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Size" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DirType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="ProgCatg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataYear" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="DataMonth" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="MERPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FileContent" EntityType="Self.FileContent" />
+          <EntitySet Name="Log" EntityType="MERPModel.Log" />
+          <EntitySet Name="FA_ClassInfo" EntityType="MERPModel.FA_ClassInfo" />
+          <EntitySet Name="ProgContent" EntityType="MERPModel.ProgContent" />
+          <EntitySet Name="FA_FaJournal" EntityType="MERPModel.FA_FaJournal" />
+          <EntitySet Name="FA_JournalV1" EntityType="MERPModel.FA_JournalV1" />
+          <EntitySet Name="AccountInfo" EntityType="MERPModel.AccountInfo" />
+          <EntitySet Name="HR_ManagerInfo" EntityType="MERPModel.HR_ManagerInfo" />
+          <EntitySet Name="StoreInfo" EntityType="MERPModel.StoreInfo" />
+          <EntitySet Name="FA_LaborHealthIns" EntityType="MERPModel.FA_LaborHealthIns" />
+          <EntitySet Name="FA_HealthInsSet" EntityType="MERPModel.FA_HealthInsSet" />
+          <EntitySet Name="FA_LaborHealthInsV1" EntityType="MERPModel.FA_LaborHealthInsV1" />
+          <EntitySet Name="FA_LaborSubsFundSet" EntityType="MERPModel.FA_LaborSubsFundSet" />
+          <EntitySet Name="FA_LaborInsSet" EntityType="MERPModel.FA_LaborInsSet" />
+          <EntitySet Name="FA_LaborInsSetMapComSet" EntityType="MERPModel.FA_LaborInsSetMapComSet" />
+          <EntitySet Name="StoreGroupSet" EntityType="MERPModel.StoreGroupSet" />
+        </EntityContainer>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FA_ClassInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FA_Class_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FA_Class_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FA_Class_Month" Type="Int32" Nullable="false" />
+          <Property Name="FA_OrderNo" Type="Int32" Nullable="false" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProgContent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProgInfoID" Type="Int32" Nullable="false" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="FA_FaJournal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubpType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DebitAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreditAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FiscalYear" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AccountPeriod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="GUID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubpDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubpNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubpSummary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DetailAccountNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DetailSubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepartNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DepartName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectAbbr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectCateg" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyNo" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="ExchangeRate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OriginCurrency" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LocalCurrencyAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Spare1No" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Spare1Abbr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Spare2No" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Spare2Abbr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Spare3No" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Spare3Abbr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Spare4No" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Spare4Abbr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Spare5No" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Spare5Abbr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Summary1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccountSubjects" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectAlias" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="FA_JournalV1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubpDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubpNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DetailAccountNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DetailSubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepartNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DepartName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DebitAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreditAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FiscalYear" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AccountPeriod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AccountInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DetailAccNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DetailAccName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="PrintOrder" Type="Int32" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="HR_ManagerInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManagerID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerNickNa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerTelPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerMobiPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ManageShopList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManageBranchID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StoreInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Kind" Type="Int32" />
+          <Property Name="Memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Group_ID" Type="Int32" />
+          <Property Name="BranchArea_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OrderArea_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PrePaidScaleGroup_ID" Type="Int32" />
+          <Property Name="ConveyKind_ID" Type="Int32" />
+          <Property Name="BeginDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FaxPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Double" />
+          <Property Name="OptimisticLockField" Type="Int32" />
+          <Property Name="GCRecord" Type="Int32" />
+          <Property Name="MobileStoreID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ManageKind" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateUser" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateUser" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Disabled" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FA_LaborHealthIns">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PlusInsCompany" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Coding" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LaborIns" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HealthIns" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupIns" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OnJobDate" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ResignDate" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Seniority" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="KeepSecret" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MemberName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DataYear" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="DataMonth" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FA_HealthInsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Heal_Rate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Heal_RateBeginDate" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Heal_LaborInsBurdenRatio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Heal_ComInsBurdenRatio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Heal_GovInsBurdenRatio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Heal_AverhouseholdsNum" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsValid" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FA_LaborHealthInsV1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PlusInsCompany" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MemberName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LaborIns" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HealthIns" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dependents" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="OnJobDate" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ResignDate" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DataYear" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="DataMonth" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="LHInsType" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FA_LaborSubsFundSet">
+          <Key>
+            <PropertyRef Name="PlusInsCompany" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlusInsCompany" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LaborSubsFund" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="FA_LaborInsSet">
+          <Key>
+            <PropertyRef Name="LabInsSetNo" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LabInsSetNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OrdAccidentInsRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EmployInsRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PersonalInsRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LaborBurdenRatio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ComBurdenRatio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GovBurdenRatio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CommuteDisaInsRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IndustryDisaInsRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OccuDisaInsRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OccuDisComBurdenRatio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OnBeginDate" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LaborRetireRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LaborSubsFund" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LaborSubsFundRate" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="IsValid" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="FA_LaborInsSetMapComSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlusInsCompany" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LabInsSetNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="StoreGroupSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreGroupNo" Type="Int32" Nullable="false" />
+          <Property Name="StoreGroupType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="StoreGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoreGroupDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoreGroupSIDList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MERPModelStoreContainer" CdmEntityContainer="MERPEntities">
+          <EntitySetMapping Name="FileContent">
+            <EntityTypeMapping TypeName="MERPModel.FileContent">
+              <MappingFragment StoreEntitySet="FileContent">
+                <ScalarProperty Name="DataMonth" ColumnName="DataMonth" />
+                <ScalarProperty Name="DataYear" ColumnName="DataYear" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="ProgCatg" ColumnName="ProgCatg" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="DirType" ColumnName="DirType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="MERPModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="LogCount" ColumnName="LogCount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FA_ClassInfo">
+            <EntityTypeMapping TypeName="MERPModel.FA_ClassInfo">
+              <MappingFragment StoreEntitySet="FA_ClassInfo">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="FA_OrderNo" ColumnName="FA_OrderNo" />
+                <ScalarProperty Name="FA_Class_Month" ColumnName="FA_Class_Month" />
+                <ScalarProperty Name="FA_Class_Name" ColumnName="FA_Class_Name" />
+                <ScalarProperty Name="FA_Class_ID" ColumnName="FA_Class_ID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgContent">
+            <EntityTypeMapping TypeName="MERPModel.ProgContent">
+              <MappingFragment StoreEntitySet="ProgContent">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="ProgInfoID" ColumnName="ProgInfoID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="ProgID" ColumnName="ProgID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FA_FaJournal">
+            <EntityTypeMapping TypeName="MERPModel.FA_FaJournal">
+              <MappingFragment StoreEntitySet="FA_FaJournal">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="SubjectAlias" ColumnName="SubjectAlias" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="AccountSubjects" ColumnName="AccountSubjects" />
+                <ScalarProperty Name="Summary1" ColumnName="Summary1" />
+                <ScalarProperty Name="Spare5Abbr" ColumnName="Spare5Abbr" />
+                <ScalarProperty Name="Spare5No" ColumnName="Spare5No" />
+                <ScalarProperty Name="Spare4Abbr" ColumnName="Spare4Abbr" />
+                <ScalarProperty Name="Spare4No" ColumnName="Spare4No" />
+                <ScalarProperty Name="Spare3Abbr" ColumnName="Spare3Abbr" />
+                <ScalarProperty Name="Spare3No" ColumnName="Spare3No" />
+                <ScalarProperty Name="Spare2Abbr" ColumnName="Spare2Abbr" />
+                <ScalarProperty Name="Spare2No" ColumnName="Spare2No" />
+                <ScalarProperty Name="Spare1Abbr" ColumnName="Spare1Abbr" />
+                <ScalarProperty Name="Spare1No" ColumnName="Spare1No" />
+                <ScalarProperty Name="LocalCurrencyAmount" ColumnName="LocalCurrencyAmount" />
+                <ScalarProperty Name="OriginCurrency" ColumnName="OriginCurrency" />
+                <ScalarProperty Name="ExchangeRate" ColumnName="ExchangeRate" />
+                <ScalarProperty Name="CurrencyNo" ColumnName="CurrencyNo" />
+                <ScalarProperty Name="ObjectNo" ColumnName="ObjectNo" />
+                <ScalarProperty Name="ObjectCateg" ColumnName="ObjectCateg" />
+                <ScalarProperty Name="ProjectAbbr" ColumnName="ProjectAbbr" />
+                <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+                <ScalarProperty Name="DepartName" ColumnName="DepartName" />
+                <ScalarProperty Name="DepartNo" ColumnName="DepartNo" />
+                <ScalarProperty Name="DetailSubjectName" ColumnName="DetailSubjectName" />
+                <ScalarProperty Name="DetailAccountNo" ColumnName="DetailAccountNo" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="SubpSummary" ColumnName="SubpSummary" />
+                <ScalarProperty Name="SubpNo" ColumnName="SubpNo" />
+                <ScalarProperty Name="SubpDate" ColumnName="SubpDate" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="AccountPeriod" ColumnName="AccountPeriod" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="CreditAmount" ColumnName="CreditAmount" />
+                <ScalarProperty Name="DebitAmount" ColumnName="DebitAmount" />
+                <ScalarProperty Name="SubpType" ColumnName="SubpType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FA_JournalV1">
+            <EntityTypeMapping TypeName="MERPModel.FA_JournalV1">
+              <MappingFragment StoreEntitySet="FA_JournalV1">
+                <ScalarProperty Name="AccountPeriod" ColumnName="AccountPeriod" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="CreditAmount" ColumnName="CreditAmount" />
+                <ScalarProperty Name="DebitAmount" ColumnName="DebitAmount" />
+                <ScalarProperty Name="DepartName" ColumnName="DepartName" />
+                <ScalarProperty Name="DepartNo" ColumnName="DepartNo" />
+                <ScalarProperty Name="DetailSubjectName" ColumnName="DetailSubjectName" />
+                <ScalarProperty Name="DetailAccountNo" ColumnName="DetailAccountNo" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="SubpNo" ColumnName="SubpNo" />
+                <ScalarProperty Name="SubpDate" ColumnName="SubpDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountInfo">
+            <EntityTypeMapping TypeName="MERPModel.AccountInfo">
+              <MappingFragment StoreEntitySet="AccountInfo">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="PrintOrder" ColumnName="PrintOrder" />
+                <ScalarProperty Name="CountFlag" ColumnName="CountFlag" />
+                <ScalarProperty Name="DetailAccName" ColumnName="DetailAccName" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="DetailAccNo" ColumnName="DetailAccNo" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HR_ManagerInfo">
+            <EntityTypeMapping TypeName="MERPModel.HR_ManagerInfo">
+              <MappingFragment StoreEntitySet="HR_ManagerInfo">
+                <ScalarProperty Name="ManageBranchID" ColumnName="ManageBranchID" />
+                <ScalarProperty Name="ManageShopList" ColumnName="ManageShopList" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="ManagerMobiPhone" ColumnName="ManagerMobiPhone" />
+                <ScalarProperty Name="ManagerTelPhone" ColumnName="ManagerTelPhone" />
+                <ScalarProperty Name="ManagerNickNa" ColumnName="ManagerNickNa" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreInfo">
+            <EntityTypeMapping TypeName="MERPModel.StoreInfo">
+              <MappingFragment StoreEntitySet="StoreInfo">
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ManageKind" ColumnName="ManageKind" />
+                <ScalarProperty Name="MobileStoreID" ColumnName="MobileStoreID" />
+                <ScalarProperty Name="GCRecord" ColumnName="GCRecord" />
+                <ScalarProperty Name="OptimisticLockField" ColumnName="OptimisticLockField" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="FaxPhone" ColumnName="FaxPhone" />
+                <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+                <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
+                <ScalarProperty Name="ConveyKind_ID" ColumnName="ConveyKind_ID" />
+                <ScalarProperty Name="PrePaidScaleGroup_ID" ColumnName="PrePaidScaleGroup_ID" />
+                <ScalarProperty Name="OrderArea_ID" ColumnName="OrderArea_ID" />
+                <ScalarProperty Name="BranchArea_ID" ColumnName="BranchArea_ID" />
+                <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Kind" ColumnName="Kind" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FA_LaborHealthIns">
+            <EntityTypeMapping TypeName="MERPModel.FA_LaborHealthIns">
+              <MappingFragment StoreEntitySet="FA_LaborHealthIns">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="DataMonth" ColumnName="DataMonth" />
+                <ScalarProperty Name="DataYear" ColumnName="DataYear" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="KeepSecret" ColumnName="KeepSecret" />
+                <ScalarProperty Name="Seniority" ColumnName="Seniority" />
+                <ScalarProperty Name="ResignDate" ColumnName="ResignDate" />
+                <ScalarProperty Name="OnJobDate" ColumnName="OnJobDate" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="GroupIns" ColumnName="GroupIns" />
+                <ScalarProperty Name="HealthIns" ColumnName="HealthIns" />
+                <ScalarProperty Name="LaborIns" ColumnName="LaborIns" />
+                <ScalarProperty Name="Coding" ColumnName="Coding" />
+                <ScalarProperty Name="PlusInsCompany" ColumnName="PlusInsCompany" />
+                <ScalarProperty Name="DepartName" ColumnName="DepartName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FA_HealthInsSet">
+            <EntityTypeMapping TypeName="MERPModel.FA_HealthInsSet">
+              <MappingFragment StoreEntitySet="FA_HealthInsSet">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="Heal_AverhouseholdsNum" ColumnName="Heal_AverhouseholdsNum" />
+                <ScalarProperty Name="Heal_GovInsBurdenRatio" ColumnName="Heal_GovInsBurdenRatio" />
+                <ScalarProperty Name="Heal_ComInsBurdenRatio" ColumnName="Heal_ComInsBurdenRatio" />
+                <ScalarProperty Name="Heal_LaborInsBurdenRatio" ColumnName="Heal_LaborInsBurdenRatio" />
+                <ScalarProperty Name="Heal_RateBeginDate" ColumnName="Heal_RateBeginDate" />
+                <ScalarProperty Name="Heal_Rate" ColumnName="Heal_Rate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FA_LaborHealthInsV1">
+            <EntityTypeMapping TypeName="MERPModel.FA_LaborHealthInsV1">
+              <MappingFragment StoreEntitySet="FA_LaborHealthInsV1">
+                <ScalarProperty Name="LHInsType" ColumnName="LHInsType" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="DataMonth" ColumnName="DataMonth" />
+                <ScalarProperty Name="DataYear" ColumnName="DataYear" />
+                <ScalarProperty Name="ResignDate" ColumnName="ResignDate" />
+                <ScalarProperty Name="OnJobDate" ColumnName="OnJobDate" />
+                <ScalarProperty Name="Dependents" ColumnName="Dependents" />
+                <ScalarProperty Name="HealthIns" ColumnName="HealthIns" />
+                <ScalarProperty Name="LaborIns" ColumnName="LaborIns" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="PlusInsCompany" ColumnName="PlusInsCompany" />
+                <ScalarProperty Name="DepartName" ColumnName="DepartName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FA_LaborSubsFundSet">
+            <EntityTypeMapping TypeName="MERPModel.FA_LaborSubsFundSet">
+              <MappingFragment StoreEntitySet="FA_LaborSubsFundSet">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="LaborSubsFund" ColumnName="LaborSubsFund" />
+                <ScalarProperty Name="PlusInsCompany" ColumnName="PlusInsCompany" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FA_LaborInsSet">
+            <EntityTypeMapping TypeName="MERPModel.FA_LaborInsSet">
+              <MappingFragment StoreEntitySet="FA_LaborInsSet">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="LaborSubsFundRate" ColumnName="LaborSubsFundRate" />
+                <ScalarProperty Name="LaborSubsFund" ColumnName="LaborSubsFund" />
+                <ScalarProperty Name="LaborRetireRate" ColumnName="LaborRetireRate" />
+                <ScalarProperty Name="OnBeginDate" ColumnName="OnBeginDate" />
+                <ScalarProperty Name="OccuDisComBurdenRatio" ColumnName="OccuDisComBurdenRatio" />
+                <ScalarProperty Name="OccuDisaInsRate" ColumnName="OccuDisaInsRate" />
+                <ScalarProperty Name="IndustryDisaInsRate" ColumnName="IndustryDisaInsRate" />
+                <ScalarProperty Name="CommuteDisaInsRate" ColumnName="CommuteDisaInsRate" />
+                <ScalarProperty Name="GovBurdenRatio" ColumnName="GovBurdenRatio" />
+                <ScalarProperty Name="ComBurdenRatio" ColumnName="ComBurdenRatio" />
+                <ScalarProperty Name="LaborBurdenRatio" ColumnName="LaborBurdenRatio" />
+                <ScalarProperty Name="PersonalInsRate" ColumnName="PersonalInsRate" />
+                <ScalarProperty Name="EmployInsRate" ColumnName="EmployInsRate" />
+                <ScalarProperty Name="OrdAccidentInsRate" ColumnName="OrdAccidentInsRate" />
+                <ScalarProperty Name="LabInsSetNo" ColumnName="LabInsSetNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FA_LaborInsSetMapComSet">
+            <EntityTypeMapping TypeName="MERPModel.FA_LaborInsSetMapComSet">
+              <MappingFragment StoreEntitySet="FA_LaborInsSetMapComSet">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="LabInsSetNo" ColumnName="LabInsSetNo" />
+                <ScalarProperty Name="PlusInsCompany" ColumnName="PlusInsCompany" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreGroupSet">
+            <EntityTypeMapping TypeName="MERPModel.StoreGroupSet">
+              <MappingFragment StoreEntitySet="StoreGroupSet">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="StoreGroupSIDList" ColumnName="StoreGroupSIDList" />
+                <ScalarProperty Name="StoreGroupDesc" ColumnName="StoreGroupDesc" />
+                <ScalarProperty Name="StoreGroupName" ColumnName="StoreGroupName" />
+                <ScalarProperty Name="StoreGroupType" ColumnName="StoreGroupType" />
+                <ScalarProperty Name="StoreGroupNo" ColumnName="StoreGroupNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

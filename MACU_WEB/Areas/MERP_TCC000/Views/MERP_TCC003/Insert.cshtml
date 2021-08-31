@@ -1,0 +1,210 @@
+﻿
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_TCC003";
+    string strMENU_ID = "MERP_TCC000";
+    ViewBag.Title = "Insert";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+            @using (Html.BeginForm("Insert", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post,
+                new { @class = "form-inline form-horizontal style-form", @role = "form", @id = strPROG_ID }))
+            {
+                <div class="form-group box-fullwidth">
+                    <div class="col-lg-12">
+
+                        <table class="table table-responsive rwd-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_AccountNo">科目編號</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_AccountNo" name="AccountNo" placeholder="Enter AccountNo">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_AccountName">科目名稱</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_AccountName" name="AccountName" placeholder="Enter AccountName">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_CountFlag">計算旗標</label> <!-- C:貸, D:借, S:加總 -->
+                                        <div>
+                                            <input type="text" class="form-control" id="id_CountFlag" name="CountFlag" placeholder="Enter CountFlag">
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                                <!--      ////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_DetailAccNo">明細科目編號</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_DetailAccNo" name="DetailAccNo" placeholder="Enter DetailAccNo">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_DetailAccName">明細科目名稱</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_DetailAccName" name="DetailAccName" placeholder="Enter DetailAccName">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_PrintOrder">Excel列印顯示順序</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_PrintOrder" name="PrintOrder" placeholder="Enter PrintOrder">
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                                <!--      ////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td colspan="3">
+                                        <label class="control-label" for="id_GroupID">群組ID</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_GroupID" name="GroupID" placeholder="Enter GroupID">
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="form-group has-success box-fullwidth">
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btn-theme" onclick="JSFunBefore_Post();">執行新增</button>
+                    </div>
+                </div>
+
+            }
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+         var PageInfo = {
+            MENU_ID: '@strMENU_ID',
+            PROG_ID: '@strPROG_ID',
+            TITLE_ID: '@ViewBag.Title'
+        };
+
+    //custom select box
+    $(function () {
+        $('select.styled').customSelect();
+    });
+
+    $(document).ready(function () {
+        //使用分頁的標題凍結方式
+
+        //$('button[name="fun_button"]').on('click',
+        //    function (e) {
+        //        JsFunLOADING_SHOW(true);
+                @*
+                JsFunErrorMsg('@("SearchData".ToAutoMultiLang())', '@(string.Format("ValRequired".ToAutoMultiLang(), "Userid".ToAutoMultiLang()))', userId);
+                *@
+
+        //    return true;
+        //    });
+
+
+    });
+
+    //20210108 CCL+ /////////////////////////////
+    function JsFunJQValidate_Summary() {
+        // 建立名為 'regex' 的自訂規則
+        $.validator.addMethod("regex", function (value, element, param) {
+            // 強制加上 ^ 與 $ 符號限制整串文字都要符合
+            return value.match(new RegExp("^" + param + "$"));
+        });
+
+
+        //confirm("form");
+        var $l_oValidator = $("form#" + PageInfo.PROG_ID).validate({
+            rules: {
+                AccountNo: {
+                    required: true
+                }
+                , AccountName: {
+                    required: true
+                }
+                , CountFlag: {
+                    required: true,
+                    maxlength: 1,
+                    regex: "[A-Za-z]+" // 寫法請參考 Regex
+                }
+                , PrintOrder: {
+                    required: true,
+                    number: true
+                }
+
+
+            }
+
+            //蓋過套件的localization.js
+            , messages: {
+                PrintOrder: {
+                    number: '請輸入數字'
+                }
+                , CountFlag: {
+                    regex: '只能使用英文字',
+                    maxlength: '請輸入單一字元'
+                }
+            }
+
+        });
+
+        //confirm(l_rtnVal.form());
+        if ($l_oValidator.form()) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    function JSFunBefore_Post() {
+
+        //confirm("Tol: " + $("#CheckedItems").val());
+
+        //Validation
+        var l_bIsValid = false;
+        l_bIsValid = JsFunJQValidate_Summary();
+        if (l_bIsValid) {
+            JsFunLOADING_SHOW(true);
+        } else {
+            return false; //不Post
+        }
+
+
+    }
+
+    </script>
+
+}

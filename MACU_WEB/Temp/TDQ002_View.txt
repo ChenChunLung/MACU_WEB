@@ -1,0 +1,30 @@
+﻿ <div class="form-group">
+                        <table class="table table-hover rwd-table" id="M_TDQ_BAR_1">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <table class="table table-bordered table-hover rwd-table" id="M_TDQ_BAR_2">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="col-sm-1"> 檔案編號</th>
+                                                    <th class="col-sm-1"> 檔案名稱</th>
+                                                    <th class="col-sm-1"> 檔案大小</th>
+                                                    <th class="col-sm-3"> 檔案型態</th>
+                                                    <th class="col-sm-3"> 檔案路徑</th>
+                                                    <th class="col-sm-3"> 上傳日期</th>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+									<td>
+                                        @* Html.ActionLink("處理中", "Create", strPROG_ID, new { area = "MERP_TDQ000" }, new { @class = "btn btn-primary", @onclick = "JsFunLOADING_SHOW(true);" }) *@
+                                        @* <button class="btn btn-primary" name="Query" type="button" onclick="JsFunLOADING_SHOW(true);">處理中</button> *@
+                                    </td>

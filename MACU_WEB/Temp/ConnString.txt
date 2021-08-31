@@ -1,0 +1,13 @@
+﻿ <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-MACU_WEB-20201204110608.mdf;Initial Catalog=aspnet-MACU_WEB-20201204110608;Integrated Security=True" providerName="System.Data.SqlClient" />
+ <add name="MERPEntities" connectionString="metadata=res://*/Models.MERP.csdl|res://*/Models.MERP.ssdl|res://*/Models.MERP.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\MERP.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+
+ <globalization culture="auto" uiCulture="auto" enableClientBasedCulture="true"/>
+
+
+     <add name="MERPSqlRemote" connectionString="Data Source=ERPDB\APOS;Initial Catalog=MERP;Persist Security Info=True;User ID=winton;Password=WintonErp" providerName="System.Data.SqlClient" />
+    <!-- add name="MERPSqlDB" connectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=D:\MACU_PROJS\WEBS\MACU_WEB\MACU_WEB\APP_DATA\MERP.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" providerName="System.Data.SqlClient"/ -->
+    <!-- Office ConnStr  -->
+    <!-- add name="MERPSqlDB" connectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=D:\MACU_PROJS\WEBS\MACU_WEB\MACU_WEB\APP_DATA\MERP.MDF;Integrated Security=True;Connect Timeout=30;" providerName="System.Data.SqlClient"/ -->
+    <!-- Home ConnStr  -->
+    <add name="MERPSqlDB" connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\工具2020-1\MACU_Projects2020\MACU_WEB\MACU_WEB\App_Data\MERP.mdf;Integrated Security=True;Connect Timeout=30" providerName="System.Data.SqlClient" />
+    <add name="MERPEntities" connectionString="metadata=res://*/Models.MERP.csdl|res://*/Models.MERP.ssdl|res://*/Models.MERP.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\MERP.mdf;integrated security=True;connect timeout=30;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />

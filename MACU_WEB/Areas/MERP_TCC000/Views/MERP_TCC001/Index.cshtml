@@ -1,0 +1,173 @@
+﻿@model  IEnumerable<MACU_WEB.Models.FileContent>
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_TCC001";
+    string strMENU_ID = "MERP_TCC000";
+    ViewBag.Title = "Index";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+
+}
+
+<!-- BASIC FORM ELELEMNTS -->
+<div class="row mt">
+    <!-- col-lg-12全佔12行; main-chart 上邊空20px -->
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+
+            @using (Html.BeginForm("Index", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <table class="table table-hover rwd-table" id="M_TDQ_BAR_1">
+                            <tbody>
+
+                                <tr>
+                                    <td>
+
+                                        <label class="sr-only" for="upload">上傳檔案</label>
+                                        <input type="file" id="upload" name="upload" class="form-control btn" placeholder="Enter Url">
+
+                                    </td>
+                                    <td>
+
+                                        <label class="sr-only" for="upload_submit">上傳檔案</label>
+                                        <input type="submit" class="form-control btn btn-primary" id="upload_submit" placeholder="Upload File" onclick="JsFunLOADING_SHOW(true);">
+
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div style="margin-top: 15px;"></div>
+
+
+
+                <!--主檔-->
+                <h2> @strPROG_ID </h2>
+                <div class="table-responsive  form-group">
+                    <!-- 一定要加boxscroll Div才會出現卷軸 -->
+                    <div class="boxscroll">
+                        <table class="table table-bordered table-hover rwd-table" id="M_SEQ_NO_1">
+                            <thead>
+                                <tr>
+                                    <th class="col-sm-1 "> 檔案編號</th>
+                                    <th class="col-sm-1 "> 檔案名稱</th>
+                                    <th class="col-sm-1 "> 檔案大小</th>
+                                    <th class="col-sm-1 "> 檔案型態</th>
+                                    <th class="col-sm-1 "> 檔案路徑</th>
+                                    <th class="col-sm-1 "> 上傳日期</th>
+                                    <th class="col-sm-1 "> 轉換Excel檔案</th>
+                                    <th class="col-sm-1 "> 刪除Excel檔案</th>
+                                    <th class="col-sm-1 "> 顯示資料庫</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i = 0;}
+
+                                @* foreach (var item in ViewData["Category"] as IEnumerable<FileContent>) *@
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @*Html.TextBox("FileContent.Id") *@
+                                            @*Html.Label(item.Id.ToString()) *@
+                                            @item.Id
+                                        </td>
+
+                                        <td>
+                                            @* Html.TextBox("FileContent.Name") *@
+                                            @*Html.Label(item.Name.ToString()) *@
+                                            @*Html.TextArea(item.Name.ToString()) *@
+                                            @item.Name
+                                        </td>
+
+
+                                        <td>
+                                            @* Html.TextBox("FileContent.Size") *@
+                                            @*Html.Label(item.Size.ToString())  *@
+                                            @item.Size
+                                        </td>
+
+                                        <td>
+                                            @*Html.TextBox("FileContent.Type") *@
+                                            @*Html.Label(item.Type)  *@
+                                            @item.Type
+                                        </td>
+
+
+                                        <td>
+                                            @* Html.TextBox("FileContent.Url") *@
+                                            @*Html.Label(item.Url.ToString())  *@
+                                            @*Html.TextArea(item.Url.ToString())  *@
+                                            @item.Url
+                                        </td>
+
+                                        <td>
+                                            @*Html.Label(item.CreateTime.ToString(), "", new { @type = "date" }) *@
+                                            @{
+                                                //string sDateTime = Convert.ToDateTime(item.CreateTime).ToString("yyyy-MM-dd");
+                                            }
+                                            @item.CreateTime
+                                        </td>
+
+                                        <td>
+
+
+                                            @*<button name="Query" class="btn btn-primary" type="button" onclick="JsFunLOADING_SHOW(true);">Loading</button>*@
+
+                                            @Html.ActionLink("載入Excel檔案", "Details", strPROG_ID, new { id = item.Id, area = strMENU_ID }, new { @class = "btn btn-success", @onclick = "JsFunLOADING_SHOW(true);" })
+                                        </td>
+
+                                        <td>
+                                            @Html.ActionLink("刪除Excel檔案", "Delete", strPROG_ID, new { id = item.Id, area = strMENU_ID }, new { @class = "btn btn-danger" })
+                                        </td>
+
+                                        <td>
+                                            @Html.ActionLink("顯示資料庫", "Journals", strPROG_ID, new { id = item.Id, area = strMENU_ID }, new { @class = "btn btn-info", @onclick = "JsFunLOADING_SHOW(true);" })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div><!-- /row -->
+<!--Big blue-->
+
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+        //alert("AAAA");
+        $(document).ready(function () {
+            //使用分頁的標題凍結方式
+
+        });
+
+
+    </script>
+
+}
+
+
+

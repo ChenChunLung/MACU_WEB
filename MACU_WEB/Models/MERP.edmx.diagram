@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2bb3cbaa0bfb4e23b442048207325b9c" Name="Diagram1" ZoomLevel="89">
+        <EntityTypeShape EntityType="MERPModel.FileContent" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MERPModel.Log" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MERPModel.FA_ClassInfo" Width="1.5" PointX="3.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MERPModel.ProgContent" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MERPModel.FA_FaJournal" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MERPModel.FA_JournalV1" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MERPModel.AccountInfo" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="MERPModel.HR_ManagerInfo" Width="1.5" PointX="8.375" PointY="5.75" />
+        <EntityTypeShape EntityType="MERPModel.StoreInfo" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="MERPModel.FA_LaborHealthIns" Width="1.5" PointX="8.375" PointY="9.75" />
+        <EntityTypeShape EntityType="MERPModel.FA_HealthInsSet" Width="1.5" PointX="10.375" PointY="5.75" />
+        <EntityTypeShape EntityType="MERPModel.FA_LaborHealthInsV1" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="MERPModel.FA_LaborSubsFundSet" Width="1.5" PointX="10.375" PointY="9.75" />
+        <EntityTypeShape EntityType="MERPModel.FA_LaborInsSet" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MERPModel.FA_LaborInsSetMapComSet" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="MERPModel.StoreGroupSet" Width="1.5" PointX="12.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

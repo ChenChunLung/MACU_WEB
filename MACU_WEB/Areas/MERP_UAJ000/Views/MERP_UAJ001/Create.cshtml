@@ -1,0 +1,206 @@
+﻿@model IEnumerable<System.Web.Mvc.SelectListItem>
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_UAJ001";
+    string strMENU_ID = "MERP_UAJ000";
+    ViewBag.Title = "Create";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+            @using (Html.BeginForm("Create", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post, new { @class = "form-inline form-horizontal style-form", @role = "form" }))
+            {
+                <div class="form-group box-fullwidth">
+                    <div class="col-lg-12">
+
+                        <table class="table table-responsive rwd-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_SID">部門編號</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_SID" name="SID" placeholder="Enter SID">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_Name">部門名稱</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_Name" name="Name" placeholder="Enter SName">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_Kind">部門類別</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_Kind" name="Kind" value="3" placeholder="Enter Kind">
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                                <!--      ////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_Memo">部門註解</label>
+                                        <div>
+
+                                            @* Html.ListBox("ShopsSelList", Model, new { @multiple = "multiple" }) *@
+                                            <div>
+                                                <input type="text" class="form-control" id="id_Memo" name="Memo" placeholder="Enter Memo">
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_GroupID">部門群組ID</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_GroupID" name="Group_ID" value="0" placeholder="Enter GroupID">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_BranchArea_ID">部門分區ID</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_BranchAreaID" name="BranchArea_ID" placeholder="Enter BranchAreaID">
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                                <!--   //////////////////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_OrderAreaID">訂單分區ID</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_OrderArea_ID" name="OrderArea_ID" placeholder="Enter OrderAreaID">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_ConveyKind_ID">ConveyKindID</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_ConveyKind_ID" name="ConveyKind_ID" placeholder="Enter ConveyKindID">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_BeginDate">開店日期</label>
+                                        <div>
+                                            <input type="date" class="form-control" id="id_BeginDate" name="BeginDate" placeholder="Enter BeginDate">
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <!--   //////////////////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_TelPhone">部門電話</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_TelPhone" name="TelPhone" placeholder="Enter TelPhone">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_FaxPhone">部門傳真</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_FaxPhone" name="FaxPhone" placeholder="Enter FaxPhone">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_CellPhone">部門手機</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_CellPhone" name="CellPhone" placeholder="Enter CellPhone">
+                                        </div>
+                                    </td>
+                                    <!--   //////////////////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_Contact">部門聯絡人</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_Contact" name="Contact" placeholder="Enter Contact">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_Address">部門位址</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_Address" name="Address" placeholder="Enter Address">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_MobileStoreID">部門MobiID</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_MobileStoreID" name="MobileStoreID" placeholder="Enter MobileStoreID">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--   //////////////////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td colspan="3">
+                                        <label class="control-label" for="id_ManageKind">部門聯絡人</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="id_ManageKind" name="ManageKind" placeholder="Enter ManageKind">
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="form-group has-success box-fullwidth">
+                    <div class="col-lg-12">
+                        <!-- button type="button" class="btn btn-theme" onclick="JSFunBefore_Post();">執行Test</button -->
+                        <!-- button type="submit" class="btn btn-theme" onclick="JsFunLOADING_SHOW(true);">執行新增</button -->
+                        <button type="submit" class="btn btn-theme" onclick="JSFunBefore_Post();">執行新增</button>
+                    </div>
+                </div>
+
+            }
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+        //custom select box
+
+        $(function () {
+            $('select.styled').customSelect();
+        });
+
+        $(document).ready(function () {
+            //使用分頁的標題凍結方式
+
+
+
+
+        });
+
+
+        function JSFunBefore_Post() {
+
+            JsFunLOADING_SHOW(true);
+        }
+
+//////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////
+
+    </script>
+
+}
+
+

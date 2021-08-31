@@ -1,0 +1,16 @@
+﻿ @"INSERT INTO " + DB_NAME + @"(" +
+                                   "SubpType," + "DebitAmount," + "CreditAmount," + "CurrencyName," +
+                                   "FiscalYear," + "AccountPeriod," + "GUID," + "SubpDate," +
+                                   "SubpNo," + "SubpSummary," + "SubjectName," + "AccountNo," +
+                                   "DetailAccountNo," + "DetailSubjectName," + "DepartNo," + "DepartName," +
+                                   "ProjectNo," + "ProjectAbbr," + "ObjectCateg," + "ObjectNo," +
+                                   "CurrencyNo," + "ExchangeRate," + "OriginCurrency," + "LocalCurrencyAmount," +
+                                   "Spare1No," + "Spare1Abbr," + "Spare2No," + "Spare2Abbr," +
+                                   "Spare3No," + "Spare3Abbr," + "Spare4No," + "Spare4Abbr," +
+                                   "Spare5No," + "Spare5Abbr," + "Summary1," + "AccountSubjects," +
+                                   "Summary," + "Category," + "SubjectAlias," + "IsValid," +
+                                   "CreateTime," + "UpdateTime" + ")" +
+                                   " VALUES (
+                                     '{0}', '{1}', '{2}', '{3}', '{4}',
+
+                                   )"

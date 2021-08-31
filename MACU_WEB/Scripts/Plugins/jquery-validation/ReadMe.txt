@@ -1,0 +1,1 @@
+﻿jquery-validation.js 是使用MVC系統預設給的js

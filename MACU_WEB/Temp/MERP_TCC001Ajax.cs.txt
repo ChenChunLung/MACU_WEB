@@ -1,0 +1,6 @@
+﻿            //使用AjaxForm, 要改用ViewData[]傳遞,無法使用自動強型別方式
+            ViewData["FileContents"] = l_oDataList;
+            return View();
+
+            //PostBack return View(l_oDataList);
+

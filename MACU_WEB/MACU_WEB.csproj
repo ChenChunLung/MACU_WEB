@@ -1,0 +1,961 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{183F3F3B-AA3D-4763-A184-D9CB78F8423B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MACU_WEB</RootNamespace>
+    <AssemblyName>MACU_WEB</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.95.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.95.3\lib\net40\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>DLL\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Resource.en-US.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Resource.zh-TW.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.zh-TW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\FrameWork\Controllers\DownloadController.cs" />
+    <Compile Include="Areas\FrameWork\Controllers\ExcelController.cs" />
+    <Compile Include="Areas\FrameWork\Controllers\UploadController.cs" />
+    <Compile Include="Areas\FrameWork\FrameWorkAreaRegistration.cs" />
+    <Compile Include="Areas\MERP_TCC000\Controllers\MERP_TCC001Controller.cs" />
+    <Compile Include="Areas\MERP_TCC000\Controllers\MERP_TCC002Controller.cs" />
+    <Compile Include="Areas\MERP_TCC000\Controllers\MERP_TCC003Controller.cs" />
+    <Compile Include="Areas\MERP_TCC000\MERP_TCC000AreaRegistration.cs" />
+    <Compile Include="Areas\MERP_TCC000\ViewModels\MERP_TCC001_Details01ViewModel.cs" />
+    <Compile Include="Areas\MERP_TCC000\ViewModels\MERP_TCC001_DetailsViewModel.cs" />
+    <Compile Include="Areas\MERP_TCC000\ViewModels\MERP_TCC001_JournalsViewModel.cs" />
+    <Compile Include="Areas\MERP_TCF000\Controllers\MERP_TCF001Controller.cs" />
+    <Compile Include="Areas\MERP_TCF000\Controllers\MERP_TCF002Controller.cs" />
+    <Compile Include="Areas\MERP_TCF000\Controllers\MERP_TCF003Controller.cs" />
+    <Compile Include="Areas\MERP_TCF000\Controllers\MERP_TCF004Controller.cs" />
+    <Compile Include="Areas\MERP_TCF000\MERP_TCF000AreaRegistration.cs" />
+    <Compile Include="Areas\MERP_TCF000\ViewModels\MERP_TCF001_Details01ViewModel.cs" />
+    <Compile Include="Areas\MERP_TCF000\ViewModels\MERP_TCF001_DetailsViewModel.cs" />
+    <Compile Include="Areas\MERP_TCF000\ViewModels\MERP_TCF002_LabInsSetMapCom_CreateViewModel.cs" />
+    <Compile Include="Areas\MERP_TCF000\ViewModels\MERP_TCF002_LabInsSetMapCom_EditViewModel.cs" />
+    <Compile Include="Areas\MERP_TCF000\ViewModels\MERP_TCF002_LaborSubsFund_CreateViewModel.cs" />
+    <Compile Include="Areas\MERP_TCF000\ViewModels\MERP_TCF004_JournalsOptions.cs" />
+    <Compile Include="Areas\MERP_TDQ000\Controllers\MERP_TDQ001Controller.cs" />
+    <Compile Include="Areas\MERP_TDQ000\Controllers\MERP_TDQ002Controller.cs" />
+    <Compile Include="Areas\MERP_TDQ000\MERP_TDQ000AreaRegistration.cs" />
+    <Compile Include="Areas\MERP_UAJ000\Controllers\MERP_UAJ001Controller.cs" />
+    <Compile Include="Areas\MERP_UAJ000\MERP_UAJ000AreaRegistration.cs" />
+    <Compile Include="Areas\MERP_UAJ000\ViewModels\MERP_UAJ001_GroupSetViewModel.cs" />
+    <Compile Include="Areas\MERP_UAK000\Controllers\MERP_UAK001Controller.cs" />
+    <Compile Include="Areas\MERP_UAK000\MERP_UAK000AreaRegistration.cs" />
+    <Compile Include="Areas\MERP_UAK000\ViewModels\MERP_UAK001_Edit01ViewModel.cs" />
+    <Compile Include="Areas\MERP_UAK000\ViewModels\MERP_UAK001_EditViewModel.cs" />
+    <Compile Include="BIServices\MERP_AccInfoExpore.cs" />
+    <Compile Include="BIServices\MERP_AccInfoTolExcel.cs" />
+    <Compile Include="BIServices\MERP_ExcelBIService.cs" />
+    <Compile Include="BIServices\MERP_ExcelV1BIService.cs" />
+    <Compile Include="BIServices\MERP_LaborHealthExcelBIService.cs" />
+    <Compile Include="BIServices\MERP_LaborHealthExcelV1BIService.cs" />
+    <Compile Include="BIServices\MERP_LHInsExcelExpore.cs" />
+    <Compile Include="BIServices\MERP_LHInsExcelItem.cs" />
+    <Compile Include="BIServices\MERP_NewOrderPtrTB.cs" />
+    <Compile Include="BIServices\MERP_ProcessExcelOptions.cs" />
+    <Compile Include="BIServices\MERP_StoreInfoGroups.cs" />
+    <Compile Include="BIServices\MERP_UploadBIService.cs" />
+    <Compile Include="BIServices\ShopManagerInfo.cs" />
+    <Compile Include="BIServices\TmpExcelItem.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountInfo.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FA_ClassInfo.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FA_FaJournal.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FA_HealthInsSet.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FA_JournalV1.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FA_LaborHealthIns.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FA_LaborHealthInsV1.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FA_LaborInsSet.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FA_LaborInsSetMapComSet.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FA_LaborSubsFundSet.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FileContent.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HR_ManagerInfo.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Log.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MERP.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MERP.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MERP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MERP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MERP.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProgContent.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StoreGroupSet.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StoreInfo.cs">
+      <DependentUpon>MERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\_Base\AmountStrNumProcess.cs" />
+    <Compile Include="Models\_Base\DateStringProcess.cs" />
+    <Compile Include="Models\_Base\ForPaging.cs" />
+    <Compile Include="Models\_Base\ForSearch.cs" />
+    <Compile Include="Models\_Base\GUIDStringProcess.cs" />
+    <Compile Include="Models\_Base\StringExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Areas\MERP_TCC000\Views\MERP_TCC002\Index.cshtml" />
+    <None Include="Areas\MERP_TCC000\Views\MERP_TCC001\Details_Org.cshtml.org" />
+    <Content Include="Areas\MERP_TCC000\Views\MERP_TCC001\DownFileList.cshtml" />
+    <None Include="Areas\MERP_TCC000\Views\MERP_TCC001\Journals_Org.cshtml.org" />
+    <Content Include="Areas\MERP_TCC000\Views\MERP_TCC003\Index.cshtml" />
+    <Content Include="Areas\MERP_TCC000\Views\MERP_TCC003\Insert.cshtml" />
+    <Content Include="Areas\MERP_UAK000\Views\web.config" />
+    <Content Include="Areas\MERP_UAK000\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\MERP_UAK000\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\MERP_UAK000\Views\MERP_UAK001\Create.cshtml" />
+    <Content Include="Areas\MERP_UAJ000\Views\web.config" />
+    <Content Include="Areas\MERP_UAJ000\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\MERP_UAJ000\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\MERP_UAJ000\Views\MERP_UAJ001\Index.cshtml" />
+    <Content Include="Areas\MERP_UAJ000\Views\MERP_UAJ001\Create.cshtml" />
+    <Content Include="Areas\MERP_UAK000\Views\MERP_UAK001\Index.cshtml" />
+    <Content Include="Areas\MERP_UAK000\Views\MERP_UAK001\Edit.cshtml" />
+    <Content Include="Areas\MERP_UAJ000\Views\MERP_UAJ001\Edit.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\web.config" />
+    <Content Include="Areas\MERP_TCF000\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF001\Index.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF001\Details.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF001\Journals.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF002\Create.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF002\Index.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF002\Edit.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF003\Index.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF003\Create.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF003\Edit.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF004\Index.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF004\Details.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF004\Journals.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF004\DownFileList.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF002\LaborSubsFund_Create.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF004\LHInsV1DB_Delete.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF002\LabInsSetMapCom_Create.cshtml" />
+    <Content Include="Areas\MERP_TCF000\Views\MERP_TCF002\LabInsSetMapCom_Edit.cshtml" />
+    <Content Include="Areas\MERP_UAJ000\Views\MERP_UAJ001\GroupSet_Create.cshtml" />
+    <Content Include="Areas\MERP_UAJ000\Views\MERP_UAJ001\GroupSet_Index.cshtml" />
+    <Content Include="Areas\MERP_UAJ000\Views\MERP_UAJ001\GroupSet_Edit.cshtml" />
+    <None Include="Services\Backup\MERP_FileContentDBService.cs.bk20201220" />
+    <None Include="Services\Backup\MERP_FA_FaJournalDBService.cs.bk20201220" />
+    <Compile Include="Services\MERPDBService.cs" />
+    <Compile Include="Services\MERP_AccountInfoDBService.cs" />
+    <Compile Include="Services\MERP_FA_FaJournalDBService.cs" />
+    <Compile Include="Services\MERP_FA_FaJournalV1DBService.cs" />
+    <Compile Include="Services\MERP_FA_HealthInsSetDBService.cs" />
+    <Compile Include="Services\MERP_FA_LaborHealthInsV1DBService.cs" />
+    <Compile Include="Services\MERP_FA_LaborInsSetDBService.cs" />
+    <Compile Include="Services\MERP_FA_LaborHealthInsDBService.cs" />
+    <Compile Include="Services\MERP_FA_LaborInsSetMapComSetDBService.cs" />
+    <Compile Include="Services\MERP_FA_LaborSubsFundSetDBService.cs" />
+    <Compile Include="Services\MERP_FileContentDBService.cs" />
+    <Compile Include="Services\MERP_HR_ManagerInfoDBService.cs" />
+    <Compile Include="Services\MERP_StoreGroupSetDBService.cs" />
+    <Compile Include="Services\MERP_StoreInfoDBService.cs" />
+    <Compile Include="Startup.cs" />
+    <Content Include="Content\Plugins\jqGrid\ui.jqgrid-bootstrap-ui.css" />
+    <Content Include="Content\Plugins\jqGrid\ui.jqgrid-bootstrap.css" />
+    <Content Include="Content\Plugins\jqGrid\ui.jqgrid.css" />
+    <Content Include="Content\Plugins\jquery-ui\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\Plugins\jquery-ui\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\Plugins\jquery-ui\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\Plugins\jquery-ui\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\Plugins\jquery-ui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\Plugins\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\Plugins\jquery-ui\jquery-ui.css" />
+    <Content Include="Content\Plugins\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Content\Plugins\jquery-validation\jquery-validation.css" />
+    <Content Include="Content\Common\macu-style.css" />
+    <Content Include="Content\Plugins\jquery-validation\demo\images\bg.gif" />
+    <Content Include="Content\Plugins\jquery-validation\demo\images\checked.gif" />
+    <Content Include="Content\Plugins\jquery-validation\demo\images\cmxform-divider.gif" />
+    <Content Include="Content\Plugins\jquery-validation\demo\images\cmxform-fieldset.gif" />
+    <Content Include="Content\Plugins\jquery-validation\demo\images\loading.gif" />
+    <Content Include="Content\Plugins\jquery-validation\demo\images\unchecked.gif" />
+    <Content Include="Content\Theme\assets\css\bootstrap-switch.css" />
+    <Content Include="Content\Theme\assets\js\bootstrap-switch.js" />
+    <None Include="Content\Theme\assets\js\form-component.js.org20210201" />
+    <Content Include="Scripts\Common\JS_FORMS.js" />
+    <Content Include="Scripts\Common\JS_UI_MESSAGE.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-ca.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-id.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-kr.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-me.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-sq.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-sr-latin.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-tw.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-uk.js" />
+    <Content Include="Scripts\Plugins\jqGrid\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\Plugins\jqGrid\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\Plugins\jqGrid\plugins\grid.addons.js" />
+    <Content Include="Scripts\Plugins\jqGrid\plugins\grid.postext.js" />
+    <Content Include="Scripts\Plugins\jqGrid\plugins\grid.setcolumns.js" />
+    <Content Include="Scripts\Plugins\jqGrid\plugins\jquery.contextmenu.js" />
+    <Content Include="Scripts\Plugins\jqGrid\plugins\jquery.searchFilter.js" />
+    <Content Include="Scripts\Plugins\jqGrid\plugins\jquery.tablednd.js" />
+    <Content Include="Content\Plugins\jqGrid\plugins\searchFilter.css" />
+    <Content Include="Content\Plugins\jqGrid\plugins\ui.multiselect.css" />
+    <Content Include="Scripts\Plugins\jqGrid\plugins\ui.multiselect.js" />
+    <Content Include="Scripts\Plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\ReadMe.txt" />
+    <Content Include="Scripts\Common\JS_Models.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\additional-methods.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\additional-methods.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ar.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ar.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_az.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_az.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_bg.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_bg.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_bn_BD.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_bn_BD.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ca.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ca.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_cs.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_cs.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_da.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_da.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_de.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_de.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_el.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_el.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_es.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_es.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_es_AR.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_es_AR.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_es_PE.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_es_PE.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_et.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_et.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_eu.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_eu.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_fa.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_fa.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_fi.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_fi.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_fr.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_fr.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ge.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ge.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_gl.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_gl.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_he.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_he.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_hr.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_hr.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_hu.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_hu.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_hy_AM.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_hy_AM.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_id.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_id.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_is.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_is.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_it.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_it.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ja.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ja.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ka.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ka.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_kk.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_kk.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ko.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ko.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_lt.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_lt.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_lv.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_lv.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_mk.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_mk.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_my.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_my.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_nl.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_nl.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_no.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_no.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_pl.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_pl.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_pt_BR.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_pt_BR.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_pt_PT.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_pt_PT.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ro.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ro.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ru.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ru.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sd.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sd.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_si.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_si.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sk.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sk.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sl.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sl.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sr.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sr.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sr_lat.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sr_lat.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sv.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_sv.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_th.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_th.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_tj.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_tj.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_tr.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_tr.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_uk.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_uk.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ur.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_ur.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_vi.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_vi.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_zh.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_zh.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_zh_TW.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\messages_zh_TW.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_de.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_de.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_es_CL.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_es_CL.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_fi.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_fi.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_it.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_it.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_nl.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_nl.min.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_pt.js" />
+    <Content Include="Scripts\Plugins\jquery-validation\localization\methods_pt.min.js" />
+    <Content Include="Temp\Bootstrap_Dialog.txt" />
+    <Content Include="Temp\InsertSqlCmdStr.txt" />
+    <Content Include="Temp\ListBox.txt" />
+    <Content Include="Temp\MERP_ExcelV1BIService.txt" />
+    <Content Include="Temp\MERP_TCC001Ajax.cs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\MERP.mdf" />
+    <Content Include="App_Data\MERP_log.ldf">
+      <DependentUpon>MERP.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\desktop.css" />
+    <Content Include="Content\Plugins\bootstrap-dialog\bootstrap-dialog.min.css" />
+    <Content Include="Content\Theme\assets\css\bootstrap.css" />
+    <Content Include="Content\Theme\assets\css\style-responsive.css" />
+    <Content Include="Content\Theme\assets\css\style.css" />
+    <Content Include="Content\Theme\assets\css\table-responsive.css" />
+    <Content Include="Content\Theme\assets\css\to-do.css" />
+    <Content Include="Content\Theme\assets\css\zabuto_calendar.css" />
+    <Content Include="Content\Theme\assets\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\Theme\assets\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Theme\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Theme\assets\img\blog-bg.jpg" />
+    <Content Include="Content\Theme\assets\img\checkbox-gray.png" />
+    <Content Include="Content\Theme\assets\img\friends\fr-01.jpg" />
+    <Content Include="Content\Theme\assets\img\friends\fr-02.jpg" />
+    <Content Include="Content\Theme\assets\img\friends\fr-03.jpg" />
+    <Content Include="Content\Theme\assets\img\friends\fr-04.jpg" />
+    <Content Include="Content\Theme\assets\img\friends\fr-05.jpg" />
+    <Content Include="Content\Theme\assets\img\friends\fr-06.jpg" />
+    <Content Include="Content\Theme\assets\img\friends\fr-07.jpg" />
+    <Content Include="Content\Theme\assets\img\friends\fr-08.jpg" />
+    <Content Include="Content\Theme\assets\img\friends\fr-09.jpg" />
+    <Content Include="Content\Theme\assets\img\friends\fr-10.jpg" />
+    <Content Include="Content\Theme\assets\img\friends\fr-11.jpg" />
+    <Content Include="Content\Theme\assets\img\instagram.jpg" />
+    <Content Include="Content\Theme\assets\img\login-bg.jpg" />
+    <Content Include="Content\Theme\assets\img\lorde.jpg" />
+    <Content Include="Content\Theme\assets\img\mask.png" />
+    <Content Include="Content\Theme\assets\img\ny.jpg" />
+    <Content Include="Content\Theme\assets\img\portfolio\port01.jpg" />
+    <Content Include="Content\Theme\assets\img\portfolio\port02.jpg" />
+    <Content Include="Content\Theme\assets\img\portfolio\port03.jpg" />
+    <Content Include="Content\Theme\assets\img\portfolio\port04.jpg" />
+    <Content Include="Content\Theme\assets\img\portfolio\port05.jpg" />
+    <Content Include="Content\Theme\assets\img\portfolio\port06.jpg" />
+    <Content Include="Content\Theme\assets\img\product.jpg" />
+    <Content Include="Content\Theme\assets\img\product.png" />
+    <Content Include="Content\Theme\assets\img\profile-01.jpg" />
+    <Content Include="Content\Theme\assets\img\profile-02.jpg" />
+    <Content Include="Content\Theme\assets\img\radio-gray.png" />
+    <Content Include="Content\Theme\assets\img\ui-danro.jpg" />
+    <Content Include="Content\Theme\assets\img\ui-divya.jpg" />
+    <Content Include="Content\Theme\assets\img\ui-macu.jpg" />
+    <Content Include="Content\Theme\assets\img\ui-sam.jpg" />
+    <Content Include="Content\Theme\assets\img\ui-sherman.jpg" />
+    <Content Include="Content\Theme\assets\img\ui-zac.jpg" />
+    <Content Include="Content\Theme\assets\img\weather.jpg" />
+    <Content Include="Content\Theme\assets\img\zoom.png" />
+    <Content Include="Content\Theme\assets\js\bootstrap-inputmask\bootstrap-inputmask.min.js" />
+    <None Include="Content\Theme\assets\js\bootstrap-switch.js.org13" />
+    <Content Include="Content\Theme\assets\js\bootstrap.min.js" />
+    <Content Include="Content\Theme\assets\js\calendar-conf-events.js" />
+    <Content Include="Content\Theme\assets\js\chart-master\Chart.js" />
+    <Content Include="Content\Theme\assets\js\chartjs-conf.js" />
+    <Content Include="Content\Theme\assets\js\common-scripts.js" />
+    <Content Include="Content\Theme\assets\js\easy-pie-chart.js" />
+    <Content Include="Content\Theme\assets\js\fancybox\jquery.fancybox.css" />
+    <Content Include="Content\Theme\assets\js\fancybox\jquery.fancybox.js" />
+    <Content Include="Content\Theme\assets\js\form-component.js" />
+    <Content Include="Content\Theme\assets\js\fullcalendar\bootstrap-fullcalendar.css" />
+    <Content Include="Content\Theme\assets\js\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Content\Theme\assets\js\gritter-conf.js" />
+    <Content Include="Content\Theme\assets\js\gritter\css\jquery.gritter.css" />
+    <Content Include="Content\Theme\assets\js\gritter\css\jquery.gritter0.css" />
+    <Content Include="Content\Theme\assets\js\gritter\images\gritter-light.png" />
+    <Content Include="Content\Theme\assets\js\gritter\images\gritter-long.png" />
+    <Content Include="Content\Theme\assets\js\gritter\images\gritter.png" />
+    <Content Include="Content\Theme\assets\js\gritter\images\ie-spacer.gif" />
+    <Content Include="Content\Theme\assets\js\gritter\js\jquery.gritter.js" />
+    <Content Include="Content\Theme\assets\js\jquery-1.8.3.min.js" />
+    <Content Include="Content\Theme\assets\js\jquery-easy-pie-chart\jquery.easy-pie-chart.css" />
+    <Content Include="Content\Theme\assets\js\jquery-easy-pie-chart\jquery.easy-pie-chart.js" />
+    <Content Include="Content\Theme\assets\js\jquery-ui-1.9.2.custom.min.js" />
+    <Content Include="Content\Theme\assets\js\jquery.backstretch.min.js" />
+    <Content Include="Content\Theme\assets\js\jquery.dcjqaccordion.2.7.js" />
+    <Content Include="Content\Theme\assets\js\jquery.js" />
+    <Content Include="Content\Theme\assets\js\jquery.nicescroll.js" />
+    <Content Include="Content\Theme\assets\js\jquery.scrollTo.min.js" />
+    <Content Include="Content\Theme\assets\js\jquery.sparkline.js" />
+    <Content Include="Content\Theme\assets\js\jquery.tagsinput.js" />
+    <Content Include="Content\Theme\assets\js\jquery.ui.touch-punch.min.js" />
+    <Content Include="Content\Theme\assets\js\morris-conf.js" />
+    <Content Include="Content\Theme\assets\js\sparkline-chart.js" />
+    <Content Include="Content\Theme\assets\js\tasks.js" />
+    <Content Include="Content\Theme\assets\js\zabuto_calendar.js" />
+    <Content Include="Content\Theme\assets\lineicons\fonts\linecons.svg" />
+    <Content Include="Content\Theme\assets\lineicons\index.html" />
+    <Content Include="Content\Theme\assets\lineicons\lte-ie7.js" />
+    <Content Include="Content\Theme\assets\lineicons\style.css" />
+    <Content Include="Content\Theme\basic_table.html" />
+    <Content Include="Content\Theme\blank.html" />
+    <Content Include="Content\Theme\buttons.html" />
+    <Content Include="Content\Theme\calendar.html" />
+    <Content Include="Content\Theme\chartjs.html" />
+    <Content Include="Content\Theme\DownloadURL.txt" />
+    <Content Include="Content\Theme\form_component.html" />
+    <Content Include="Content\Theme\gallery.html" />
+    <Content Include="Content\Theme\general.html" />
+    <Content Include="Content\Theme\index.html" />
+    <Content Include="Content\Theme\lock_screen.html" />
+    <Content Include="Content\Theme\login.html" />
+    <Content Include="Content\Theme\morris.html" />
+    <Content Include="Content\Theme\panels.html" />
+    <Content Include="Content\Theme\responsive_table.html" />
+    <Content Include="Content\Theme\todo_list.html" />
+    <Content Include="DLL\Microsoft.Office.Interop.Excel.dll" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\logo_header.png" />
+    <Content Include="Models\MERP.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MERP.edmx</DependentUpon>
+      <LastGenOutput>MERP.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MERP.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MERP.edmx</DependentUpon>
+      <LastGenOutput>MERP.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\FrameWork\Views\web.config" />
+    <Content Include="Areas\MERP_TDQ000\Views\web.config" />
+    <Content Include="Areas\MERP_TCC000\Views\web.config" />
+    <Content Include="Areas\MERP_TDQ000\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\MERP_TDQ000\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\MERP_TDQ000\Views\MERP_TDQ001\Index.cshtml" />
+    <Content Include="Areas\FrameWork\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\FrameWork\Views\Shared\_Layout.cshtml" />
+    <EntityDeploy Include="Models\MERP.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MERP.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MERP.edmx.diagram">
+      <DependentUpon>MERP.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\MERP_TDQ000\Views\MERP_TDQ002\Index.cshtml" />
+    <Content Include="Areas\MERP_TDQ000\Views\MERP_TDQ002\Details.cshtml" />
+    <Content Include="Content\Theme\.DS_Store" />
+    <Content Include="Content\Theme\assets\.DS_Store" />
+    <Content Include="Content\Theme\assets\css\.DS_Store" />
+    <Content Include="Content\Theme\assets\font-awesome\.DS_Store" />
+    <Content Include="Content\Theme\assets\font-awesome\css\.DS_Store" />
+    <Content Include="Content\Theme\assets\font-awesome\fonts\.DS_Store" />
+    <Content Include="Content\Theme\assets\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Theme\assets\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Theme\assets\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Theme\assets\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\Theme\assets\fonts\.DS_Store" />
+    <Content Include="Content\Theme\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Theme\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Theme\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Theme\assets\img\.DS_Store" />
+    <Content Include="Content\Theme\assets\img\friends\.DS_Store" />
+    <Content Include="Content\Theme\assets\img\portfolio\.DS_Store" />
+    <Content Include="Content\Theme\assets\js\.DS_Store" />
+    <Content Include="Content\Theme\assets\js\bootstrap-inputmask\.DS_Store" />
+    <Content Include="Content\Theme\assets\js\chart-master\.DS_Store" />
+    <Content Include="Content\Theme\assets\js\fancybox\.DS_Store" />
+    <Content Include="Content\Theme\assets\js\fullcalendar\.DS_Store" />
+    <Content Include="Content\Theme\assets\js\gritter\.DS_Store" />
+    <Content Include="Content\Theme\assets\js\gritter\css\.DS_Store" />
+    <Content Include="Content\Theme\assets\js\gritter\images\.DS_Store" />
+    <Content Include="Content\Theme\assets\js\gritter\js\.DS_Store" />
+    <Content Include="Content\Theme\assets\js\jquery-easy-pie-chart\.DS_Store" />
+    <Content Include="Content\Theme\assets\lineicons\.DS_Store" />
+    <Content Include="Content\Theme\assets\lineicons\fonts\.DS_Store" />
+    <Content Include="Content\Theme\assets\lineicons\fonts\linecons.eot" />
+    <Content Include="Content\Theme\assets\lineicons\fonts\linecons.ttf" />
+    <Content Include="Content\Theme\assets\lineicons\fonts\linecons.woff" />
+    <Content Include="Areas\MERP_TDQ000\Views\MERP_TDQ001\Details.cshtml" />
+    <Content Include="Areas\MERP_TDQ000\Views\MERP_TDQ002\DownFileList.cshtml" />
+    <Content Include="Areas\MERP_TCC000\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\MERP_TCC000\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\MERP_TCC000\Views\MERP_TCC001\Index.cshtml" />
+    <Content Include="Areas\MERP_TCC000\Views\MERP_TCC001\Details.cshtml" />
+    <Content Include="Areas\MERP_TCC000\Views\MERP_TCC001\Journals.cshtml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Common\JS_UI.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Plugins\bootstrap-dialog\bootstrap-dialog.min.js" />
+    <Content Include="Temp\ConnString.txt" />
+    <Content Include="Temp\JSFunLoading.txt" />
+    <Content Include="Temp\MainPage001.txt" />
+    <Content Include="Temp\MERP_TCC001_Details.txt" />
+    <Content Include="Temp\MERP_TCC001_DetailsView.txt" />
+    <Content Include="Temp\MERP_TCC001_JournalsView.txt" />
+    <Content Include="Temp\MERP_TCC001_JournalsView20210107.txt" />
+    <Content Include="Temp\MERP_UAK001_Edit_View20210107.txt" />
+    <Content Include="Temp\RouteConfig.txt" />
+    <Content Include="Temp\Serv Validate.txt" />
+    <Content Include="Temp\ShowLoading.html" />
+    <Content Include="Temp\StoreInfo.txt" />
+    <Content Include="Temp\Switch.txt" />
+    <Content Include="Temp\TCC003_InsertView.txt" />
+    <Content Include="Temp\TDQ001_View.txt" />
+    <Content Include="Temp\TDQ002_View.txt" />
+    <Content Include="Temp\Tmp001.txt" />
+    <Content Include="Temp\Tmp_FAJournal.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout_BK20201210_01.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.Org.cshtml" />
+    <Content Include="Views\Shared\_Layout_BK20201210.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index_Org.cshtml" />
+    <Content Include="Temp\MERP_TCC001Ajax.cshtml.txt" />
+    <Content Include="Views\Shared\_Layout_BK_OK20201216.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\FrameWork\Models\" />
+    <Folder Include="Areas\FrameWork\Views\Download\" />
+    <Folder Include="Areas\FrameWork\Views\Excel\" />
+    <Folder Include="Areas\FrameWork\Views\Upload\" />
+    <Folder Include="Areas\MERP_TCC000\Models\" />
+    <Folder Include="Areas\MERP_TCF000\Models\" />
+    <Folder Include="Areas\MERP_TDQ000\Models\" />
+    <Folder Include="Areas\MERP_TDQ000\ViewModels\" />
+    <Folder Include="Areas\MERP_UAJ000\Models\" />
+    <Folder Include="Areas\MERP_UAK000\Models\" />
+    <Folder Include="Dn_Data\" />
+    <Folder Include="Up_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resource.zh-TW.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.zh-TW.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resource.en-US.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.en-US.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resource.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2075</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2075/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

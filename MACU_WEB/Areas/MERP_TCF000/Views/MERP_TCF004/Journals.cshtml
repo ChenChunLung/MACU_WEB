@@ -1,0 +1,289 @@
+﻿@model MACU_WEB.Areas.MERP_TCF000.ViewModels.MERP_TCF001_Details01ViewModel
+
+@using MACU_WEB.Models;
+@using MACU_WEB.Areas.MERP_TCF000.ViewModels;
+
+
+@{
+    string strPROG_ID = "MERP_TCF004";
+    string strMENU_ID = "MERP_TCF000";
+    ViewBag.Title = "Journals";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+            @using (Html.BeginForm("Journals", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post,
+                new { @class = "form-inline form-horizontal style-form", @role = "form", @id = strPROG_ID,
+                    @onSubmit = "return JSFunBefore_Post();" }))
+            {
+                <div class="form-group box-fullwidth">
+                    <div class="col-lg-12">
+
+                        <table class="table table-responsive rwd-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.Hidden("DataYear", Model.m_sYear)
+                                        @Html.Hidden("DataMonth", Model.m_sMonth)
+                                        <!-- label class="control-label" for="OnJobDate">到職日期</label -->
+                                        <label class="control-label" for="StartDate">開始日期</label>
+                                        <div>
+                                            <input type="date" class="form-control" id="StartDate" name="StartDate" placeholder="Enter StartDate">
+                                            <!-- input type="date" class="form-control" id="OnJobDate" name="OnJobDate" placeholder="Enter OnJobDate" -->
+                                            @* Html.ValidationMessage("na_StartDate", "*") *@
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <!--label class="control-label" for="ResignDate">離職日期</label -->
+                                        <label class="control-label" for="EndDate">結束日期</label>
+                                        <div>
+                                            <input type="date" class="form-control" id="EndDate" name="EndDate" placeholder="Enter EndDate">
+                                            <!--input type="date" class="form-control" id="ResignDate" name="ResignDate" placeholder="Enter ResignDate" -->
+                                            @* Html.ValidationMessage("na_EndDate", "*") *@
+                                        </div>
+                                    </td>
+
+                                    @*
+                                    <td>
+                                        <label class="control-label" for="MemberName">員工</label>
+                                        <div>
+                                            @Html.TextBox("MemberName", "", new { @class = "form-control" })
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="ShopName">部門</label>
+                                        <div>
+                                            @Html.TextBox("ShopName", "", new { @class = "form-control" })
+                                        </div>
+                                    </td>
+                                    *@
+                                </tr>
+
+                                <tr>
+                                    
+                                        <td>
+                                            <label class="control-label" for="id_IsUseManSel">啟用輸出明細?</label>
+                                            <div>
+                                                <input type="checkbox" id="id_IsUseDetailSel" name="IsUseDetailSel" class="form-control" data-toggle="switch" />
+                                            </div>
+                                        </td>
+                                        <td>
+
+                                            <h4>欲輸出明細 請切換[啟用輸出明細]開關為"開啟"</h4>
+                                        </td>
+                                    
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="form-group has-success box-fullwidth">
+                    <div class="col-lg-12">
+                        <p>
+                            @* Html.ValidationSummary() *@
+
+                        </p>
+                        <button type="submit" class="btn btn-theme">執行轉換</button>
+                    </div>
+                </div>
+
+            }
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+<!-- BASIC FORM ELELEMNTS -->
+<div class="row mt">
+    <!-- col-lg-12全佔12行; main-chart 上邊空20px -->
+    <div class="col-lg-12">
+        <div class="form-panel">
+
+            <!-- form class="form-horizontal style-form" method="get" -->
+            <div class="table-responsive  form-group">
+                <h2 class="col-sm-12 control-label">@Model.m_sMonth 月 @Model.m_sYear 年 勞健保</h2>
+                <div class="col-sm-12">
+                    <!-- 一定要加boxscroll Div才會出現卷軸 -->
+                    <div class="boxscroll">
+                        <table class="table table-hover rwd-table" id="M_TCC_TAB_1">
+                            <thead>
+                                <tr>
+                                    <!-- Total 39行 Cols + IsValid,createTime,updateTime -->
+                                    <th class="col-sm-1 "> 編號</th>
+                                    <th class="col-sm-1 "> 部門</th>
+                                    <th class="col-sm-1 "> 加保公司</th>
+                                    <th class="col-sm-1 "> 姓名</th>
+                                    <th class="col-sm-1 "> 勞保</th>
+                                    <th class="col-sm-1 "> 健保</th>
+                                    <th class="col-sm-1 "> 眷屬</th>
+                                    <th class="col-sm-1 "> 到職日</th>
+                                    <th class="col-sm-1 "> 離職日</th>
+                                    <th class="col-sm-1 "> 資料年份</th>
+                                    <th class="col-sm-1 "> 資料月份</th>
+                                    <th class="col-sm-1 "> 備註</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i = 0;}
+                                @if ((Model != null) && (Model.m_oFALaborHealthInsV1List != null) &&
+                                   (Model.m_oFALaborHealthInsV1List.Count() > 0))
+                                {
+                                    foreach (var item in Model.m_oFALaborHealthInsV1List)
+                                    {
+                                <tr>
+                                    <td>
+                                        @item.Id
+                                    </td>
+                                    <td>
+                                        @item.DepartName
+                                    </td>
+                                    <td>
+                                        @item.PlusInsCompany
+                                    </td>
+                                    <td>
+                                        @item.MemberName
+                                    </td>
+                                    <td>
+                                        @item.LaborIns
+                                    </td>
+                                    <td>
+                                        @item.HealthIns
+                                    </td>
+                                    <td>
+                                        @item.Dependents
+                                    </td>
+                                    <td>
+                                        @item.OnJobDate
+                                    </td>
+                                    <td>
+                                        @item.ResignDate
+                                    </td>
+                                    <td>
+                                        @item.DataYear
+                                    </td>
+                                    <td>
+                                        @item.DataMonth
+                                    </td>
+                                    <td>
+                                        @item.LHInsType
+                                    </td>
+                                </tr>
+                                    }
+
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /form -->
+
+        </div>
+
+    </div><!-- /col-lg-12 -->
+
+</div><!-- /row -->
+
+
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+        var PageInfo = {
+            MENU_ID: '@strMENU_ID',
+            PROG_ID: '@strPROG_ID',
+            TITLE_ID: '@ViewBag.Title'
+        };
+        //custom select box
+
+        //$(function () {
+        //    $('select.styled').customSelect();
+        //});
+
+        $(document).ready(function () {
+            //使用分頁的標題凍結方式
+        });
+
+        function JsFunJQValidate_Summary() {
+            /////////////////////////////////////////
+            //confirm("form");
+            
+
+            var $l_oValidator = $("form#" + PageInfo.PROG_ID).validate({
+                rules: {
+                    OnJobDate: {
+                        required: true
+
+                    }
+                    //, ResignDate: {
+                    //    required: true                  
+                    //}
+
+
+                }
+
+                //改用套件的localization.js
+                //, messages: {
+                //    year_month: {
+                //        required: '上傳檔案,年月份必填'
+                //    }
+                //    , upload: {
+                //        required: '未上傳檔案'
+                //    }
+                //}
+
+            });
+
+            //confirm(l_rtnVal.form());
+            if ($l_oValidator.form()) {
+                return true;
+            } else {
+                return false;
+            }
+
+            /////////////////////////////////////////
+
+        }
+
+
+        function JSFunBefore_Post() {
+
+            //confirm("Tol: " + $("#CheckedItems").val());
+            //20210108 CCL- SetFunShopItems();
+
+            //Validation
+            var l_bIsValid = false;
+            l_bIsValid = JsFunJQValidate_Summary();
+            if (l_bIsValid) {
+                JsFunLOADING_SHOW(true);
+            } else {
+                return false; //不Post
+            }
+
+
+        }
+
+
+    </script>
+
+}
+
+
+
+
+

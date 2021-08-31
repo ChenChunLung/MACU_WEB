@@ -1,0 +1,30 @@
+﻿            #region [1] 資料驗證           
+            if (TempData["ValidSummaryVal"] != null )
+            {
+                //回Get頁面                
+                ViewData["ValidSummaryVal"] = TempData["ValidSummaryVal"]; //在Action間傳遞 
+                this.ModelState.AddModelError("na_StartDate", ViewData["ValidSummaryVal"].ToString());
+            }
+            #endregion
+			
+			
+			#region [1] 資料驗證
+            string ErrMsg = "";
+            if(string.IsNullOrEmpty(p_oForm["na_StartDate"]))
+            {
+                ErrMsg += " 開始日期必須有值.";
+                this.ModelState.AddModelError("na_StartDate", ErrMsg);
+            }
+            if (string.IsNullOrEmpty(p_oForm["na_EndDate"]))
+            {
+                ErrMsg += " 結束日期必須有值.";
+                this.ModelState.AddModelError("na_EndDate", ErrMsg);
+            }
+            if(!this.ModelState.IsValid)
+            {
+                //回Get頁面
+                TempData["ValidSummaryVal"] = ErrMsg; //在Action間傳遞
+                return RedirectToAction("Journals");
+            }
+
+            #endregion

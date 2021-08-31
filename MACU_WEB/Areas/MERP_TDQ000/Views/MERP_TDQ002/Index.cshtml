@@ -1,0 +1,168 @@
+﻿@model  MACU_WEB.Models.FileContent
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_TDQ002";
+    string strMENU_ID = "MERP_TDQ000";
+    ViewBag.Title = "Index";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<!-- BASIC FORM ELELEMNTS -->
+<div class="row mt">
+    <!-- col-lg-12全佔12行; main-chart 上邊空20px -->
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+
+            @* using (Html.BeginForm("Index", strPROG_ID, FormMethod.Post, new { id = "ProcessExcel" })) *@
+            @using (Html.BeginForm("Index", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post, new { id = "ProcessExcel" }))
+            {
+                <!--功能列-->
+
+                <div class="form-group">
+
+                    <table class="table table-bordered table-hover rwd-table" id="M_TDQ_BAR_1">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1"> 檔案編號</th>
+                                <th class="col-sm-1"> 檔案名稱</th>
+                                <th class="col-sm-1"> 檔案大小</th>
+                                <th class="col-sm-3"> 檔案型態</th>
+                                <th class="col-sm-3"> 檔案路徑</th>
+                                <th class="col-sm-3"> 上傳日期</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Model.Id
+                                </td>
+                                <td>
+                                    @Model.Name
+                                </td>
+                                <td>
+                                    @Model.Size
+                                </td>
+                                <td>
+                                    @Model.Type
+                                </td>
+                                <td>
+                                    @Model.Url
+                                </td>
+                                <td>
+                                    @Model.CreateTime
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div style="margin-top: 15px;"></div>
+
+                //table-responsive:響應式表格
+                <!--主檔-->
+                <h2> @strPROG_ID </h2>
+                <div class="table-responsive  form-group">
+                    <table class="table table-hover rwd-table" id="M_TDQ_NO_2">
+                        <thead>
+                            <tr></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Html.Label("所有值為0刪除")
+                                </td>
+                                <td>
+
+                                    @* Html.CheckBox("ChkIsDelAllZero", false, new { data-toggle = "switch" }) *@
+                                    <input type="checkbox" id="ChkIsDelAllZero" name="ChkIsDelAllZero" data-toggle="switch" />
+
+                                </td>
+
+                                <td>
+                                    @Html.Label("分店排序方式")
+                                </td>
+                                <td>
+                                    @{
+                                        List<SelectListItem> l_oListItems = new List<SelectListItem>();
+                                        SelectListItem l_oListItem = new SelectListItem();
+                                        l_oListItem.Text = "分店名稱";
+                                        l_oListItem.Value = "Name";
+                                        l_oListItems.Add(l_oListItem);
+                                        l_oListItem = new SelectListItem();
+                                        l_oListItem.Text = "分店編號";
+                                        l_oListItem.Value = "Id";
+                                        l_oListItems.Add(l_oListItem);
+                                    }
+
+                                    @Html.DropDownList("SelShopOrder", l_oListItems)
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--功能列-->
+                <div class="btn-toolbar">
+                    <div class="form-group">
+                        <table class="table table-hover rwd-table" id="M_TDQ_BAR_3">
+                            <tbody>
+                                <tr>
+
+                                    <td>
+                                        <input type="submit" class="btn btn-primary" name="process_submit" value="處理Excel檔案" />
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("下載檔案列表", "DownFileList", strPROG_ID, new { area = strMENU_ID }, new { @class = "btn btn-primary" })
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            }
+
+
+        </div>
+    </div>
+</div><!-- /row -->
+
+
+@section JSPartCode {
+
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        //使用分頁的標題凍結方式
+
+        //$('button[name="fun_button"]').on('click',
+        //    function (e) {
+        //        JsFunLOADING_SHOW(true);
+                @*
+                JsFunErrorMsg('@("SearchData".ToAutoMultiLang())', '@(string.Format("ValRequired".ToAutoMultiLang(), "Userid".ToAutoMultiLang()))', userId);
+                *@
+
+        //    return true;
+        //    });
+    });
+
+    </script>
+
+}
+
+

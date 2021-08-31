@@ -1,0 +1,134 @@
+﻿@model  IEnumerable<MACU_WEB.Models.FileContent>
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_TCF004";
+    string strMENU_ID = "MERP_TCF000";
+    ViewBag.Title = "DownFileList";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<!-- BASIC FORM ELELEMNTS -->
+<div class="row mt">
+    <!-- col-lg-12全佔12行; main-chart 上邊空20px -->
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+
+
+            <div style="margin-top: 15px;"></div>
+
+
+            <!--主檔-->
+            <h2> @strPROG_ID </h2>
+            <div class="table-responsive  form-group">
+                <!-- 一定要加boxscroll Div才會出現卷軸 -->
+                <div class="boxscroll">
+                    <table class="table table-bordered table-hover rwd-table" id="M_SEQ_NO_1">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1 "> 檔案編號</th>
+                                <th class="col-sm-1 "> 檔案名稱</th>
+                                <th class="col-sm-1 "> 檔案大小</th>
+                                <th class="col-sm-3 "> 檔案型態</th>
+                                <th class="col-sm-3 "> 檔案路徑</th>
+                                <th class="col-sm-3 "> 上傳日期</th>
+                                <th class="col-sm-1 "> 下載Excel檔案</th>
+                                <th class="col-sm-1 "> 刪除Excel檔案</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int i = 0;}
+
+                            @* foreach (var item in ViewData["Category"] as IEnumerable<FileContent>) *@
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @*Html.TextBox("FileContent.Id") *@
+                                        @*Html.Label(item.Id.ToString()) *@
+                                        @item.Id
+                                    </td>
+
+                                    <td>
+                                        @* Html.TextBox("FileContent.Name") *@
+                                        @*Html.Label(item.Name.ToString()) *@
+                                        @*Html.TextArea(item.Name.ToString()) *@
+                                        @item.Name
+                                    </td>
+
+
+                                    <td>
+                                        @* Html.TextBox("FileContent.Size") *@
+                                        @*Html.Label(item.Size.ToString())  *@
+                                        @item.Size
+                                    </td>
+
+                                    <td>
+                                        @*Html.TextBox("FileContent.Type") *@
+                                        @*Html.Label(item.Type)  *@
+                                        @item.Type
+                                    </td>
+
+
+                                    <td>
+                                        @* Html.TextBox("FileContent.Url") *@
+                                        @*Html.Label(item.Url.ToString())  *@
+                                        @*Html.TextArea(item.Url.ToString())  *@
+                                        @item.Url
+                                    </td>
+
+                                    <td>
+                                        @*Html.Label(item.CreateTime.ToString(), "", new { @type = "date" }) *@
+                                        @{
+                                            //string sDateTime = Convert.ToDateTime(item.CreateTime).ToString("yyyy-MM-dd");
+                                        }
+                                        @item.CreateTime
+                                    </td>
+
+                                    <td>
+
+                                        @Html.ActionLink("下載Excel檔案", "Download", strPROG_ID, new { id = item.Id, area = strMENU_ID }, new { @class = "btn btn-primary" })
+                                    </td>
+
+                                    <td>
+                                        @Html.ActionLink("刪除Excel檔案", "DeleteDownFile", strPROG_ID, new { id = item.Id, area = strMENU_ID }, new { @class = "btn btn-danger" })
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div><!-- /row -->
+
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+        //alert("AAAA");
+        $(document).ready(function () {
+            //使用分頁的標題凍結方式
+
+        });
+
+    </script>
+
+}
+
+
+
+

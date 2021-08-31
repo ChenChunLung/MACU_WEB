@@ -1,0 +1,21 @@
+﻿   $(function() {
+
+        // Tags Input
+        $(".tagsinput").tagsInput();
+
+        // Switch
+        $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
+		//此code放在Theme/assest/js/form-component
+		//20210201 CCL已拿掉1.3版,改用3.3.5版
+    });
+
+	<div>
+       <div class="switch has-switch">
+		   <div class="switch-on switch-animate">
+			   <input type="checkbox" id="IsUseSIDSIInput" name="IsUseSIDSIInput" class="form-control" data-toggle="switch">
+			   <span class="switch-left">ON</span>
+			   <label for="IsUseSIDSIInput">&nbsp;</label>
+			   <span class="switch-right">OFF</span>
+		   </div>
+	   </div>
+    </div>

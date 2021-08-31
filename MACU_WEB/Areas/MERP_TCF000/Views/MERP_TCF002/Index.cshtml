@@ -1,0 +1,195 @@
+﻿@model  IEnumerable<MACU_WEB.Models.FA_LaborInsSet>
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_TCF002";
+    string strMENU_ID = "MERP_TCF000";
+    ViewBag.Title = "Index";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+
+            <div class="form-group box-fullwidth">
+                <div class="col-lg-12">
+
+                    <table class="table table-responsive rwd-table">
+                        <tbody>
+                            <tr>
+                                <td colspan="4">
+                                    <label class="control-label" for="Create">開始新增</label>
+                                    <div>
+                                        @Html.ActionLink("新增勞保設定", "Create", strPROG_ID, new { area = strMENU_ID }, new { @class = "btn btn-primary" })
+
+                                    </div>
+                                </td>
+
+
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+
+<!-- BASIC FORM ELELEMNTS -->
+<div class="row mt">
+    <!-- col-lg-12全佔12行; main-chart 上邊空20px -->
+    <div class="col-lg-12">
+        <div class="form-panel">
+ 
+            <div style="margin-top: 15px;"></div>
+
+            <!--主檔-->
+            <h2> @strPROG_ID </h2>
+            <div class="table-responsive  form-group">
+                <!-- 一定要加boxscroll Div才會出現卷軸 -->
+                <div class="boxscroll">
+                    <table class="table table-bordered table-hover rwd-table" id="M_SEQ_NO_1">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1 "> 勞保設定編號</th>
+                                <th class="col-sm-1 "> 勞保設定流水號</th>
+                                <th class="col-sm-1 "> 個人保險費率</th>
+                                <th class="col-sm-1 "> 被保險人負擔比例</th>
+                                <th class="col-sm-1 "> 投保單位負擔比例</th>
+                                <th class="col-sm-1 "> 政府負擔比例</th>
+                                <th class="col-sm-1 "> 職業災害保險費率</th>
+                                <th class="col-sm-1 "> 投保單位負擔比例</th>
+                                <th class="col-sm-1 "> 實施日期</th>
+                                <th class="col-sm-1 "> 勞退保險費率</th>
+                                <th class="col-sm-1 "> 勞保代墊基金</th>
+                                <th class="col-sm-1 "> 勞保代墊基金費率</th>
+                                <th class="col-sm-1 "> 保險設定操作 1</th>
+                                <th class="col-sm-1 "> 保險設定操作 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int i = 0;}
+
+                            @* foreach (var item in ViewData["Category"] as IEnumerable<FileContent>) *@
+                            @if ((Model != null) && (Model.Count() > 0))
+                            {
+                                foreach (var item in Model)
+                                {
+                                    i++;
+
+                            <tr>
+
+                                <td>
+
+                                    @item.Id
+                                </td>
+
+                                <td>
+
+                                    @item.LabInsSetNo
+                                </td>
+
+                                <td>
+
+                                    @item.PersonalInsRate
+                                </td>
+
+
+                                <td>
+
+                                    @item.LaborBurdenRatio
+                                </td>
+
+                                <td>
+
+                                    @item.ComBurdenRatio
+                                </td>
+
+
+                                <td>
+
+                                    @item.GovBurdenRatio
+                                </td>
+
+                                <td>
+
+                                    @item.OccuDisaInsRate
+                                </td>
+
+                                <td>
+
+                                    @item.OccuDisComBurdenRatio
+                                </td>
+
+                                <td>
+
+                                    @item.OnBeginDate
+                                </td>
+
+                                <td>
+
+                                    @item.LaborRetireRate
+                                </td>
+
+                                <td>
+
+                                    @item.LaborSubsFund
+                                </td>
+
+                                <td>
+
+                                    @item.LaborSubsFundRate
+                                </td>
+
+                                <td>
+                                    @* Html.ActionLink("編輯勞工保險設定", "Edit", strPROG_ID, new { id = item.Id, area = strMENU_ID }, new { @class = "btn btn-primary" }) *@
+                                    @Html.ActionLink("編輯勞工保險設定", "Edit", strPROG_ID, new { no = item.LabInsSetNo, area = strMENU_ID }, new { @class = "btn btn-primary" })
+                                </td>
+
+                                <td>
+                                    @* Html.ActionLink("刪除勞工保險設定", "Delete", strPROG_ID, new { id = item.Id, area = strMENU_ID }, new { @class = "btn btn-danger" }) *@
+                                    @Html.ActionLink("刪除勞工保險設定", "Delete", strPROG_ID, new { no = item.LabInsSetNo, area = strMENU_ID }, new { @class = "btn btn-danger" })
+                                </td>
+
+                            </tr>
+                                }
+
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div><!-- /row -->
+
+
+
+@section JSPartCode {
+
+
+
+}
+
+
+
+

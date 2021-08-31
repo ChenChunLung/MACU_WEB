@@ -1,0 +1,89 @@
+﻿@model  MACU_WEB.Models.FileContent
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_TDQ002";
+    string strMENU_ID = "MERP_TDQ000";
+    ViewBag.Title = "Detail";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+<!--功能列-->
+<div class="btn-toolbar">
+    <div class="form-group">
+        <table class="table table-hover rwd-table" id="M_TDQ_BAR_1">
+            <tbody>
+                <tr>
+                    <td>
+                        <table class="table table-bordered table-hover rwd-table" id="M_TDQ_BAR_2">
+                            <tbody>
+                                <tr>
+                                    <th class="col-sm-1"> 檔案編號</th>
+                                    <th class="col-sm-1"> 檔案名稱</th>
+                                    <th class="col-sm-1"> 檔案大小</th>
+                                    <th class="col-sm-3"> 檔案型態</th>
+                                    <th class="col-sm-3"> 檔案路徑</th>
+                                    <th class="col-sm-3"> 上傳日期</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Model.Id
+                                    </td>
+                                    <td>
+                                        @Model.Name
+                                    </td>
+                                    <td>
+                                        @Model.Size
+                                    </td>
+                                    <td>
+                                        @Model.Type
+                                    </td>
+                                    <td>
+                                        @Model.Url
+                                    </td>
+                                    <td>
+                                        @Model.CreateTime
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div style="margin-top: 15px;"></div>
+
+    //table-responsive:響應式表格
+<!--主檔-->
+<h2> @strPROG_ID </h2>
+<div class="table-responsive  form-group">
+    <table class="table table-bordered table-hover rwd-table" id="M_TDQ_NO_3">
+        <thead>
+            <tr></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            //使用分頁的標題凍結方式
+
+        });
+
+    </script>
+
+}
+
+
+

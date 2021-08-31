@@ -1,0 +1,44 @@
+﻿/************************************************************************************
+    MACU Custom Style
+
+************************************************************************************/
+
+div.boxscroll {
+    margin: 4px, 4px;
+    padding: 4px;
+    height: 620px;
+    overflow-x: auto;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+div.scroll {
+    margin: 4px, 4px;
+    padding: 4px;
+    background-color: green;
+    width: 500px;
+    height: 110px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+table.rwd-table thead > tr > th {
+    background-color: royalblue;
+    color: white;
+}
+
+div.box-fullwidth {
+    width: 100%; /* 解決div box/table 自適應行內內容大小,而非全螢幕拉長 */
+}
+
+/*  20210106 CCL+  */
+div.boxscrollV2 {
+    margin: 4px, 4px;
+    padding: 4px;
+    height: 220px;
+    overflow-x: auto;
+    overflow-y: auto;
+    text-align: justify;
+}
+

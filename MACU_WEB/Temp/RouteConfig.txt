@@ -1,0 +1,10 @@
+﻿, namespaces: new string[] { "MACU_WEB.Controllers" } //20201211 CCL+,只比對此namesapce的Route
+).DataTokens["UseNamespaceFallback"] = false
+
+
+Areas內
+, new { controller = "MERP_TDQ001|MERP_TDQ002" } 
+, new[] { "MACU_WEB.Areas.MERP_TDQ000.Controllers" } //20201211 CCL+,只比對此namesapce的Route
+
+Areas內加上
+, namespaces: new[] { "MACU_WEB.Areas.MERP_TDQ000.Controllers" }

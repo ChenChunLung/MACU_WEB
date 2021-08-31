@@ -1,0 +1,843 @@
+﻿@model MACU_WEB.Areas.MERP_UAJ000.ViewModels.MERP_UAJ001_GroupSetViewModel
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_UAJ001";
+    string strMENU_ID = "MERP_UAJ000";
+    ViewBag.Title = "GroupSet_Create";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+@{
+    string ValidErrorMsg = "";
+    if (ViewData["ValidSummaryVal"] != null)
+    {
+        ValidErrorMsg = ViewData["ValidSummaryVal"].ToString();
+    }
+
+    //抓出是否DB內已有此設定
+    List<StoreGroupSet> ModelItems = Model.m_oStoreGroupSetList;
+    string g_sExistedSGSet = "";
+    //20210225 CCL+ 新增區域Type
+    string g_sExistedSGSetType = "";
+
+    if ((Model != null) &&
+        (ModelItems != null) &&
+        (ModelItems.Count() > 0))
+    {
+        int l_iIndex = 0;
+
+        foreach (StoreGroupSet Item in ModelItems)
+        {
+            l_iIndex++;
+            g_sExistedSGSet += Item.StoreGroupNo + ",";
+            //20210225 CCL+ 新增區域Type
+            g_sExistedSGSetType += Item.StoreGroupType + ",";
+        }
+        g_sExistedSGSet = g_sExistedSGSet.Substring(0, g_sExistedSGSet.Length - 1);
+        //20210225 CCL+ 新增區域Type
+        g_sExistedSGSetType = g_sExistedSGSetType.Substring(0, g_sExistedSGSetType.Length - 1);
+
+    }
+
+
+}
+
+
+@*
+    @helper ShowShopSelOptionV2()
+    {
+        @Html.Raw("<div class='boxscrollV2'><div id='id_SelShopList'>")
+        @Html.Raw("<table class='table table-responsive rwd-table'>")
+        @Html.Raw("<tbody>")
+
+        int l_iIndex = 0;
+        foreach (SelectListItem item in Model.m_oSelShopList)
+        {
+            l_iIndex++;
+
+            @Html.Raw("<tr>")
+            @Html.Raw("<td>")
+            @Html.CheckBox("SelShopItem", new { value = item.Value })
+            @Html.Raw(item.Text + "   " + item.Value)
+
+            @Html.Raw("</td>")
+
+            @Html.Raw("</tr>")
+        }
+        @Html.Hidden("CheckedShopItems");
+        @Html.Raw("</tbody>")
+        @Html.Raw("</table>")
+        @Html.Raw("</div></div>")
+
+    }
+*@
+
+@* ////////// 20210107 CCL+ 改分區方式/////////////////////////////////////*@
+@helper ShowAllShopSelOptions()
+{
+    @Html.Hidden("CheckedShopItems");
+    //20210107 CCL+ 改分群
+    @Html.Raw("<table class='table table-bordered table-hover rwd-table'>" +
+                       "<tbody>" +
+                           "<tr>")
+
+    @Html.Raw("<td>")
+    //南區
+    @ShowShopSelOptionV3("id_SelSShopList", Model.m_sSShopKey, Model.m_iSShopCount,
+                     Model.m_oSelSShopList)
+    @Html.Raw("</td>")
+
+    @Html.Raw("<td>")
+    //北區
+    @ShowShopSelOptionV3("id_SelNShopList", Model.m_sNShopKey, Model.m_iNShopCount,
+                        Model.m_oSelNShopList)
+    @Html.Raw("</td>")
+
+    @Html.Raw("<td>")
+    //中區
+    @ShowShopSelOptionV3("id_SelCShopList", Model.m_sCShopKey, Model.m_iCShopCount,
+                     Model.m_oSelCShopList)
+    @Html.Raw("</td>")
+
+
+
+    @Html.Raw("  </tr>" +
+            "</tbody>" +
+        "</table>")
+
+}
+
+@helper ShowShopSelOptionV3(string p_sid, string p_sLabel, int l_iShopCount, List<SelectListItem> p_oModel)
+{
+    //id_SelShopList
+    @Html.Raw("<div class='boxscrollV2'><div id='" + p_sid + "'>")
+    @Html.Label("分區: " + p_sLabel + "; 店數: " + l_iShopCount)
+    //20210223 CCL+ 自動計數項目
+    @Html.Hidden(p_sid + "_Count", "0")
+    @Html.Label("選擇數目:")
+    @Html.Raw("<span id='" + p_sid + "_Display" + "'>0</span>")
+    ////////////////////////////
+    @Html.Raw("<table class='table table-responsive rwd-table'>")
+    @Html.Raw("<tbody>")
+
+    int l_iIndex = 0;
+    foreach (SelectListItem item in p_oModel)
+    {
+        l_iIndex++;
+        @* Html.CheckBox("SelShopItem") *@
+        @Html.Raw("<tr>")
+        @Html.Raw("<td>")
+        @Html.CheckBox("SelShopItem", new { value = item.Value })
+        @Html.Raw(item.Text + "   " + item.Value)
+        @Html.Raw("</td>")
+
+        @Html.Raw("</tr>")
+    }
+
+    @Html.Raw("</tbody>")
+    @Html.Raw("</table>")
+    @Html.Raw("</div></div>")
+
+    //@Html.ListBox()
+}
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+            @using (Html.BeginForm("GroupSet_Create", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post,
+                new
+                {
+                    @class = "form-inline form-horizontal style-form",
+                    @role = "form",
+                    @id = strPROG_ID,
+                    @onSubmit = "return JSFunBefore_Post();"
+                }))
+            {
+                <div class="form-group box-fullwidth">
+                    <div class="col-lg-12">
+
+                        <table class="table table-responsive rwd-table">
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="GroupSetType">區域選擇</label>
+                                        <div>
+                                            @Html.DropDownList("GroupSetType", Model.m_oStoreInfoGroupSetType, new { @class = "form-control" })
+                                            @Html.Hidden("SelGroupSetTypeName", Model.m_oStoreInfoGroupSetType.First().Text)
+                                        </div>
+                                    </td>
+
+                                    <td colspan="2">
+                                        <label class="control-label" for="GroupSet">分類選擇</label>
+                                        <div>
+                                            @Html.DropDownList("GroupSet", Model.m_oStoreInfoGroup, new { @class = "form-control" })
+                                            @Html.Hidden("SelGroupSetName", Model.m_oStoreInfoGroup.First().Text)
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3">
+                                        <label class="control-label" for="id_ShopsGroup">店鋪選擇</label>
+                                        <div>
+
+                                            @ShowAllShopSelOptions()
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_ClearAllShops">取消所有部門選取</label>
+                                        <div>
+                                            <button type="button" class="btn btn-theme" id="id_ClearAllShops" onclick="JsFun_ClearAllShopChkBoxGroup();">取消所有選取</button>
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="ShopsGroupSIDS">店鋪ID直接輸入</label>
+                                        <div>
+                                            @Html.TextBox("ShopsGroupSIDS")
+
+                                        </div>
+                                        <h4>請以[,逗號]分隔店鋪ID,中間不得空白</h4>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_IsUseSIDSIInput">使用店鋪ID直接輸入?</label>
+                                        <div>
+                                            <input type="checkbox" id="IsUseSIDSIInput" name="IsUseSIDSIInput"
+                                                   class="form-control" data-toggle="switch" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h4>欲使用店鋪ID直接輸入 請切換[使用店鋪ID直接輸入]開關為"開啟"</h4>
+                                    </td>
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="form-group has-success box-fullwidth">
+                    <div class="col-lg-12">
+                        <p>
+                            @* Html.ValidationSummary() *@
+
+                        </p>
+                        <button type="submit" class="btn btn-theme">執行轉換</button>
+                    </div>
+                </div>
+
+            }
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+<!-- BASIC FORM ELELEMNTS -->
+<div class="row mt">
+    <!-- col-lg-12全佔12行; main-chart 上邊空20px -->
+    <div class="col-lg-12">
+        <div class="form-panel">
+
+            <div style="margin-top: 15px;"></div>
+
+            <!--主檔-->
+            <div class="table-responsive  form-group">
+                <!-- 一定要加boxscroll Div才會出現卷軸 -->
+                <div class="boxscroll">
+                    <table class="table table-bordered table-hover rwd-table" id="M_SEQ_NO_1">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1 "> 編號</th>
+                                <th class="col-sm-1 "> 直合營設定編碼</th>
+                                <th class="col-sm-1 "> 直合營設定型態</th>
+                                <th class="col-sm-1 "> 直合營設定名稱</th>
+                                <th class="col-sm-1 "> 直合營設定描述</th>
+                                <th class="col-sm-1 "> 直合營設定店家</th>
+                                <th class="col-sm-1 "> 建立日期</th>
+                                <th class="col-sm-1 "> 更新日期</th>
+                                <th class="col-sm-1 "> 直合營設定操作 1</th>
+                                <th class="col-sm-1 "> 直合營設定操作 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int i = 0;}
+
+                            @* foreach (var item in ViewData["Category"] as IEnumerable<FileContent>) *@
+                            @if ((Model != null) &&
+                                 (ModelItems != null) &&
+                                (ModelItems.Count() > 0))
+                            {
+                                foreach (var item in ModelItems)
+                                {
+                                    i++;
+
+                                    <tr>
+
+                                        <td>
+
+                                            @item.Id
+                                        </td>
+
+                                        <td>
+
+                                            @item.StoreGroupNo
+                                        </td>
+
+                                        <td>
+
+                                            @item.StoreGroupType
+                                        </td>
+
+
+                                        <td>
+
+                                            @item.StoreGroupName
+                                        </td>
+
+                                        <td>
+
+                                            @item.StoreGroupDesc
+                                        </td>
+
+
+                                        <td>
+
+                                            @item.StoreGroupSIDList
+                                        </td>
+
+                                        <td>
+
+                                            @item.CreateTime
+                                        </td>
+
+                                        <td>
+
+                                            @item.UpdateTime
+                                        </td>
+
+
+                                        <td>
+
+                                            @Html.ActionLink("編輯直合營設定", "GroupSet_Edit", strPROG_ID, new { no = item.StoreGroupNo, type = item.StoreGroupType , area = strMENU_ID }, new { @class = "btn btn-primary" })
+                                        </td>
+
+                                        <td>
+                                            @Html.ActionLink("刪除直合營設定", "GroupSet_Delete", strPROG_ID, new { no = item.StoreGroupNo, type = item.StoreGroupType , area = strMENU_ID }, new { @class = "btn btn-danger" })
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div><!-- /row -->
+
+
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+     var PageInfo = {
+            MENU_ID: '@strMENU_ID',
+            PROG_ID: '@strPROG_ID',
+            TITLE_ID: '@ViewBag.Title'
+        };
+
+        var $l_oValidator1;
+        var $l_oValidator2;
+
+        var g_sExistedSGSet = '@g_sExistedSGSet';
+        //20210225 CCL+ 增加判斷區域Type
+        var g_sExistedSGSetType = '@g_sExistedSGSetType';
+
+        function JSFun_ClearAllSelAutoCount() {
+            //S
+            $("#id_SelSShopList_Count").val(0);
+            $("#id_SelSShopList_Display").text(0);
+            //N
+            $("#id_SelNShopList_Count").val(0);
+            $("#id_SelNShopList_Display").text(0);
+            //C
+            $("#id_SelCShopList_Count").val(0);
+            $("#id_SelCShopList_Display").text(0);
+
+        }
+
+        function JSFun_SetSelAutoCounting() {
+
+            //20210223 CCL+ 增加即時顯示選擇數目 //////////////////////
+            $("#id_SelSShopList input#SelShopItem").each(function () {
+                $(this).bind("change", function () {
+
+                    //confirm($(this).prop("checked"));
+                    if ($(this).prop("checked") == true) {
+                        var l_iCount = $("#id_SelSShopList_Count").val();
+                        l_iCount++;
+
+                    } else {
+                        var l_iCount = $("#id_SelSShopList_Count").val();
+                        l_iCount--;
+                    }
+
+                    //confirm(l_iCount);
+                    $("#id_SelSShopList_Count").val(l_iCount);
+                    $("#id_SelSShopList_Display").text(l_iCount);
+
+                });
+
+            });
+
+            $("#id_SelNShopList input#SelShopItem").each(function () {
+                $(this).bind("change", function () {
+
+                    //confirm($(this).prop("checked"));
+                    if ($(this).prop("checked") == true) {
+                        var l_iCount = $("#id_SelNShopList_Count").val();
+                        l_iCount++;
+
+                    } else {
+                        var l_iCount = $("#id_SelNShopList_Count").val();
+                        l_iCount--;
+                    }
+
+                    //confirm(l_iCount);
+                    $("#id_SelNShopList_Count").val(l_iCount);
+                    $("#id_SelNShopList_Display").text(l_iCount);
+
+                });
+
+            });
+
+            $("#id_SelCShopList input#SelShopItem").each(function () {
+                $(this).bind("change", function () {
+
+                    //confirm($(this).prop("checked"));
+                    if ($(this).prop("checked") == true) {
+                        var l_iCount = $("#id_SelCShopList_Count").val();
+                        l_iCount++;
+
+                    } else {
+                        var l_iCount = $("#id_SelCShopList_Count").val();
+                        l_iCount--;
+                    }
+
+                    //confirm(l_iCount);
+                    $("#id_SelCShopList_Count").val(l_iCount);
+                    $("#id_SelCShopList_Display").text(l_iCount);
+
+                });
+
+            });
+            ////////////////////////////////////////////////////////////
+
+        }
+
+    $(document).ready(function () {
+        //confirm("form#" + PageInfo.PROG_ID);
+        //confirm("form#");
+
+        $("#GroupSet").change(function () {
+            var $l_oSel = $("#GroupSet option:selected");
+            var l_sSelGroupSetText = $l_oSel.text();
+            $("#SelGroupSetName").val(l_sSelGroupSetText);
+            //confirm(l_sSelGroupSetText);
+        });
+
+        //20210225 CCL+ 區域Type ID
+        $("#GroupSetType").change(function () {
+            var $l_oSel = $("#GroupSetType option:selected");
+            var l_sSelGroupSetText = $l_oSel.text();
+            $("#SelGroupSetTypeName").val(l_sSelGroupSetText);
+            //confirm(l_sSelGroupSetText);
+        });
+
+        //20210223 CCL+ 自動計數選項
+        JSFun_SetSelAutoCounting();
+
+
+        //$("#IsUseSIDSIInput").bootstrapSwitch({
+        //    onSwitchChange: function (e) {
+                //alert(e.target.value);
+        //        var l_sRtnType = e.target.value;
+        //        confirm(l_sRtnType);
+        //    }
+        //});
+
+        //$("#IsUseSIDSIInput").bootstrapSwitch('setOnLabel', 'on');
+        //$("#IsUseSIDSIInput").bootstrapSwitch('setOffLabel', 'off');
+        //$("#IsUseSIDSIInput").bootstrapSwitch({
+        //    onText: 'On',
+        //    offText: 'Off'
+        //});
+
+     });
+
+
+
+
+
+    //$("#id_ManagerSel").change(function () {
+        //var l_sManagerID = "AAAAAAAAAAAAA";
+        //var l_sManagerID = $("#id_ManagerSel").val();
+
+        //l_sManagerID = $('#id_ManagerSel').select();
+        //window.confirm(l_sManagerID);
+    //});
+
+
+    //custom select box
+    //$(function () {
+        //$('select.styled').customSelect();
+
+
+
+    //});
+
+    function JsFun_BeforePostCheck() {
+        if (g_sExistedSGSet == "") {
+            //DB是空的可以新增
+            return true;
+            //return false;
+        } else {
+            var l_sSelSGSetNO = $("#GroupSet option:selected").val();
+            //20210225 CCL+ 增加判斷區域Type
+            var l_sSelSGSetType = $("#GroupSetType option:selected").val();
+
+            //confirm(l_sSelSGSetNO);
+            var aryExistedSGSetNos = g_sExistedSGSet.split(",");
+            //20210225 CCL+ 增加判斷區域Type
+            var aryExistedSGSetTypes = g_sExistedSGSetType.split(",");
+
+            //如果選擇的分類,已存在DB,提示做編輯
+            for (var i = 0; i < aryExistedSGSetNos.length; i++) {
+                //if (l_sSelSGSetNO == aryExistedSGSetNos[i]) {
+                if (l_sSelSGSetNO == aryExistedSGSetNos[i] && l_sSelSGSetType == aryExistedSGSetTypes[i]) {
+
+                    //confirm(aryExistedSGSetNos[i] + " , Type = " + aryExistedSGSetTypes[i]);
+
+                    JsFunErrorMsg("提示:", "此分類設定已存在,請改用下方編輯按鈕做編輯!!!", null);
+                    return false;
+                }
+            }
+            return true;
+            //return false;
+        }
+
+        return false;
+    }
+
+    //20210108 CCL+ /////////////////////////////
+
+
+        function JsFunJQValidate_Summary() {
+            /////////////////////////////////////////
+            //confirm("form");
+
+            var $l_oValidator1 = $("form#" + PageInfo.PROG_ID).validate({
+                rules: {
+                    SelShopItem: {
+                        required: true
+                    }
+
+                }
+
+                , messages: {
+                    SelShopItem: {
+                        required: ' 至少必選一項 '
+                    }
+                }
+
+            });
+
+            //confirm(l_rtnVal.form());
+            if ($l_oValidator1.form()) {
+                return true;
+            } else {
+                return false;
+            }
+
+            /////////////////////////////////////////
+
+
+        }
+
+        function JsFunJQValidate_Summary2() {
+            /////////////////////////////////////////
+            //confirm("form");
+
+
+            var $l_oValidator2 = $("form#" + PageInfo.PROG_ID).validate({
+                rules: {
+                    ShopsGroupSIDS: {
+                        required: true
+                    }
+
+                }
+
+                , messages: {
+                    ShopsGroupSIDS: {
+                        required: ' 必須輸入店ID '
+                    }
+                }
+
+            });
+
+            //confirm(l_rtnVal.form());
+            if ($l_oValidator2.form()) {
+                return true;
+            } else {
+                return false;
+            }
+
+            /////////////////////////////////////////
+
+
+        }
+
+
+        function JSFun_SetGroupSetting() {
+            //CheckedItems
+
+
+        }
+
+    //20210106 CCL+ ///////////////////////////////////////////////////
+
+    function JSFun_CheckInputType() {
+
+        var l_sRtnType = "";
+        //var l_sRtnType = $("#IsUseSIDSIInput").val();
+        //confirm(l_sRtnType);
+        //var l_sRtnType = $("#id_IsUseSIDSIInput").bootstrapSwitch("state").val();
+        //var l_sRtnType = $("#IsUseSIDSIInput").parent().parent().bootstrapSwitch('state');
+        //var l_sRtnType = $("div.switch").parent().bootstrapSwitch('state');
+        var l_sRtnType = $("#IsUseSIDSIInput").bootstrapSwitch('state'); //此參數只有2.0板以上才有,原本1.3版無法使用
+        //var l_sRtnType = $("#IsUseSIDSIInput").bootstrapSwitch('toggleState');
+
+        //confirm(l_sRtnType);
+        if (l_sRtnType == true) {
+            //confirm("true");
+            //檢查是否有輸入InputTypeStr
+            if ($("#ShopsGroupSIDS").val() == "") {
+                JsFunErrorMsg("提示:", "請輸入店家ID字串!!!", null);
+                return false;
+            }
+
+            return true;
+        } else {
+            //confirm("false");
+
+            //檢查是否有勾選店家
+            if ($("#CheckedShopItems").val() == "") {
+                JsFunErrorMsg("提示:", "請勾選至少一家店家!!!", null);
+                return false;
+            }
+
+            return true;
+        }
+
+    }
+
+
+
+
+    function SetFunShopItems() {
+        //CheckedItems
+        var l_sRtnShopsStr = "";
+        $("#CheckedShopItems").val(""); //init
+
+        var $l_oSelShops = $("#id_SelShopList input[type='checkbox']:checked");
+        $l_oSelShops.each(function () {
+            var l_sTmp = $(this).val();
+            l_sRtnShopsStr += l_sTmp + ",";
+            //confirm(l_sRtnShopsStr);
+        });
+        l_sRtnShopsStr = l_sRtnShopsStr.substring(0, l_sRtnShopsStr.length - 1);
+
+        $("#CheckedShopItems").val(l_sRtnShopsStr);
+    }
+
+    function SetFunNCSShopItems() {
+        //CheckedItems
+        var l_sRtnShopsStr = "";
+        $("#CheckedShopItems").val(""); //init
+        //北
+        var $l_oSelNShops = $("#id_SelNShopList input[type='checkbox']:checked");
+        $l_oSelNShops.each(function () {
+            var l_sTmp = $(this).val();
+            l_sRtnShopsStr += l_sTmp + ",";
+            //confirm(l_sRtnShopsStr);
+        });
+        //中
+        var $l_oSelCShops = $("#id_SelCShopList input[type='checkbox']:checked");
+        $l_oSelCShops.each(function () {
+            var l_sTmp = $(this).val();
+            l_sRtnShopsStr += l_sTmp + ",";
+            //confirm(l_sRtnShopsStr);
+        });
+        //南
+        var $l_oSelSShops = $("#id_SelSShopList input[type='checkbox']:checked");
+        $l_oSelSShops.each(function () {
+            var l_sTmp = $(this).val();
+            l_sRtnShopsStr += l_sTmp + ",";
+            //confirm(l_sRtnShopsStr);
+        });
+
+        l_sRtnShopsStr = l_sRtnShopsStr.substring(0, l_sRtnShopsStr.length - 1);
+
+        //All Selected
+        $("#CheckedShopItems").val(l_sRtnShopsStr);
+        //confirm("Tol: " + $("#CheckedShopItems").val());
+    }
+
+    function JSFunBefore_Post() {
+
+        //confirm("Tol: " + $("#CheckedItems").val());
+        //20210108 CCL- SetFunShopItems();
+        SetFunNCSShopItems(); //分群
+        //JSFun_SetGroupSetting();
+
+        //Validation
+        var l_bIsValid = false;
+        var l_bIsUseInput = false;
+        var l_bIsCanSave = false;
+
+        l_bIsCanSave = JsFun_BeforePostCheck(); //20210202 CCL+
+        l_bIsUseInput = JSFun_CheckInputType();
+        //兩種狀況都要符合
+        if (l_bIsCanSave && l_bIsUseInput) {
+            l_bIsValid = true;
+        } else {
+            l_bIsValid = false;
+        }
+
+
+        //confirm(l_bIsUseInput);
+
+        //if (l_bIsUseInput == true) {
+            //使用手動輸入
+            //if ($l_oValidator1 != null)
+            //    $l_oValidator1.resetForm();
+
+        //    l_bIsValid = JsFunJQValidate_Summary2();
+        //} else {
+            //if ($l_oValidator2 != null)
+            //    $l_oValidator2.resetForm();
+
+            //l_bIsValid = JsFunJQValidate_Summary();
+        //}
+
+
+        if (l_bIsValid) {
+            JsFunLOADING_SHOW(true);
+            //return false; //debug
+        } else {
+            return false; //不Post
+        }
+
+
+    }
+
+
+
+    function JsFun_ClearAllShopChkBoxGroup() {
+        //北
+        var $l_oSelNShops = $("#id_SelNShopList input[type='checkbox']");
+        $l_oSelNShops.each(function () {
+            $(this).prop("checked", false);
+        });
+        //中
+        var $l_oSelCShops = $("#id_SelCShopList input[type='checkbox']");
+        $l_oSelCShops.each(function () {
+            $(this).prop("checked", false);
+        });
+        //南
+        var $l_oSelSShops = $("#id_SelSShopList input[type='checkbox']");
+        $l_oSelSShops.each(function () {
+            $(this).prop("checked", false);
+        });
+
+        $("#CheckedShopItems").val(""); //清空選擇
+
+        //20210223 CCL+ 清空選擇 自動計數選項
+        JSFun_ClearAllSelAutoCount();
+
+    }
+
+
+    /*
+    $("#id_IsUseManSel").change(function () {
+        var l_bIsUseSelMan = $(this).val();
+        confirm(l_bIsUseSelMan);
+        if (l_bIsUseSelMan == false) {
+
+            JsFun_ClearAllShopChkBoxGroup();
+            $("#id_SelShopList").prop("disabled", true);
+
+        } else {
+
+            JsFun_ClearAllShopChkBoxGroup();
+            $("#id_SelShopList").prop("disabled", false);
+        }
+    });
+    */
+    //bootstrapSwitch
+
+
+    /*
+    $("#id_IsUseManSel[data-toggle='switch']").bootstrapSwitch({
+        onText: "啟用",
+        offText: "停止",
+        onColor: "success",
+        offColor: "info",
+        size: "small",
+        onSwitchChange: function (event, state) {
+            if (state == true) {
+                //$(this).val("1");
+                confirm(state);
+                //JsFun_ClearAllShopChkBoxGroup();
+                //$("#id_SelShopList").prop("disabled", false);
+            } else {
+                //$(this).val("2");
+                confirm(state);
+                //JsFun_ClearAllShopChkBoxGroup();
+                //$("#id_SelShopList").prop("disabled", true);
+            }
+        }
+
+    });
+    */
+    ///////////////////////////////////////////////////////////////////
+
+
+    </script>
+
+}
+
+
+

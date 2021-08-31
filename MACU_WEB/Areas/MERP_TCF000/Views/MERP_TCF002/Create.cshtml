@@ -1,0 +1,453 @@
+﻿@*model System.String *@
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_TCF002";
+    string strMENU_ID = "MERP_TCF000";
+    ViewBag.Title = "Create";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+            @using (Html.BeginForm("Create", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post,
+                new { @class = "form-inline form-horizontal style-form", @role = "form", @id = strPROG_ID }))
+            {
+                <div class="form-group box-fullwidth">
+                    <div class="col-lg-12">
+
+                        <table class="table table-responsive rwd-table">
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <h4>
+                                            @Html.Raw("勞健保設定 流水號")
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        @Html.Label("LabInsSetNoShow_LB", "勞健保設定流水號", new { @class = "control-label", @for = "LabInsSetNoShow" })
+                                        <div>
+
+                                            @Html.TextBox("LabInsSetNoShow", ViewData["LabInsSetNo"], new { @class = "form-control", @placeholder = "Enter LabInsSetNoShow", @disabled = "disabled" })                                           
+                                            @Html.Hidden("LabInsSetNo", ViewData["LabInsSetNo"])
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="6">
+                                        <h4>
+                                            @Html.Raw("勞保 普通事故保險費率")
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        @Html.Label("OrdAcciInsRate_LB", "普通事故保險費率", new { @class = "control-label", @for = "OrdAcciInsRate" })
+                                        <div>
+
+                                            @Html.TextBox("OrdAcciInsRate", "", new { @class = "form-control", @placeholder = "Enter OrdAcciInsRate" })
+                                            @Html.Raw("%")
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <h2>
+                                            @Html.Raw("          +          ")
+                                        </h2>
+                                    </td>
+
+                                    <td>
+                                        @Html.Label("EmployInsRate_LB", "就業保險費率", new { @class = "control-label", @for = "EmployInsRate" })
+                                        <div>
+                                            @Html.TextBox("EmployInsRate", "", new { @class = "form-control", @placeholder = "Enter EmployInsRate" })
+                                            @Html.Raw("%")
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <h2>
+                                            @Html.Raw("          =          ")
+                                        </h2>
+                                    </td>
+
+                                    <td>
+                                        @Html.Label("PersonalInsRate_LB", "個人保險費率", new { @class = "control-label", @for = "PersonalInsRate" })
+                                        <div>
+                                            @Html.TextBox("PersonalInsRate", "", new { @class = "form-control", @placeholder = "Enter PersonalInsRate" })
+                                            @Html.Raw("%")
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <h4>
+                                            @Html.Raw("勞保 負擔比例")
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        @Html.Label("LaborBurdenRatio_LB", "(勞工)被保險人負擔比例", new { @class = "control-label", @for = "LaborBurdenRatio" })
+                                        <div>
+
+                                            @Html.TextBox("LaborBurdenRatio", "", new { @class = "form-control", @placeholder = "Enter LaborBurdenRatio" })
+                                            @Html.Raw("%")
+
+                                        </div>
+
+                                    </td>
+                                    <td colspan="2">
+                                        @Html.Label("ComBurdenRatio_LB", "(公司)投保單位負擔比例", new { @class = "control-label", @for = "ComBurdenRatio" })
+                                        <div>
+
+                                            @Html.TextBox("ComBurdenRatio", "", new { @class = "form-control", @placeholder = "Enter ComBurdenRatio" })
+                                            @Html.Raw("%")
+
+                                        </div>
+                                    </td>
+                                    <td colspan="2">
+                                        @Html.Label("GovBurdenRatio_LB", "政府負擔比例", new { @class = "control-label", @for = "GovBurdenRatio" })
+                                        <div>
+
+                                            @Html.TextBox("GovBurdenRatio", "", new { @class = "form-control", @placeholder = "Enter GovBurdenRatio" })
+                                            @Html.Raw("%")
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <h4>
+                                            @Html.Raw("職業災害保險費率")
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        @Html.Label("CommuteDisaInsRate_LB", "上下班保險費率", new { @class = "control-label", @for = "CommuteDisaInsRate" })
+                                        <div>
+
+                                            @Html.TextBox("CommuteDisaInsRate", "", new { @class = "form-control", @placeholder = "Enter CommuteDisaInsRate" })
+                                            @Html.Raw("%")
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <h2>
+                                            @Html.Raw("          +          ")
+                                        </h2>
+                                    </td>
+
+                                    <td>
+                                        @Html.Label("IndustryDisaInsRate_LB", "行業別保險費率", new { @class = "control-label", @for = "IndustryDisaInsRate" })
+                                        <div>
+                                            @Html.TextBox("IndustryDisaInsRate", "", new { @class = "form-control", @placeholder = "Enter IndustryDisaInsRate" })
+                                            @Html.Raw("%")
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <h2>
+                                            @Html.Raw("          =          ")
+                                        </h2>
+                                    </td>
+
+                                    <td>
+                                        @Html.Label("OccuDisaInsRate_LB", "職業災害保險費率", new { @class = "control-label", @for = "OccuDisaInsRate" })
+                                        <div>
+
+                                            @Html.TextBox("OccuDisaInsRate", "", new { @class = "form-control", @placeholder = "Enter OccuDisaInsRate" })
+                                            @Html.Raw("%")
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <h4>
+                                            @Html.Raw("職災 負擔比例")
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        @Html.Label("OccuDisComBurdenRatio_LB", "投保單位負擔比例", new { @class = "control-label", @for = "OccuDisComBurdenRatio" })
+                                        <div>
+
+                                            @Html.TextBox("OccuDisComBurdenRatio", "", new { @class = "form-control", @placeholder = "Enter OccuDisComBurdenRatio" })
+                                            @Html.Raw("%")
+
+                                        </div>
+
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <h4>
+                                            @Html.Raw("勞保代墊基金")
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        @Html.Label("LaborSubsFund_LB", "勞保代墊基金", new { @class = "control-label", @for = "LaborSubsFund" })
+                                        <div>
+
+                                            @Html.TextBox("LaborSubsFund", "", new { @class = "form-control", @placeholder = "Enter LaborSubsFund" })
+
+
+                                        </div>
+
+                                    </td>
+                                    <td colspan="3">
+                                        @Html.Label("LaborSubsFundRate_LB", "勞保代墊基金費率", new { @class = "control-label", @for = "LaborSubsFundRate" })
+                                        <div>
+
+                                            @Html.TextBox("LaborSubsFundRate", "", new { @class = "form-control", @placeholder = "Enter LaborSubsFundRate" })
+                                            @Html.Raw("%")
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <h4>
+                                            @Html.Raw("勞退")
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        @Html.Label("LaborRetireRate_LB", "勞退費率", new { @class = "control-label", @for = "LaborRetireRate" })
+                                        <div>
+
+                                            @Html.TextBox("LaborRetireRate", "", new { @class = "form-control", @placeholder = "Enter LaborRetireRate" })
+
+
+                                        </div>
+
+                                    </td>
+                                    <td colspan="3">
+                                        @Html.Label("OnBeginDate_LB", "實施日期", new { @class = "control-label", @for = "OccuDisComBurdenRatio" })
+                                        <div>
+
+                                            <input type="date" class="form-control" id="OnBeginDate" name="OnBeginDate" placeholder="Enter OnBeginDate">
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="form-group has-success box-fullwidth">
+                    <div class="col-lg-12">
+                        <p>
+                            @* Html.ValidationSummary() *@
+
+                        </p>
+                        <button type="submit" class="btn btn-theme" onclick="JSFunBefore_Post();">執行新增</button>
+                    </div>
+                </div>
+
+            }
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+     var PageInfo = {
+            MENU_ID: '@strMENU_ID',
+            PROG_ID: '@strPROG_ID',
+            TITLE_ID: '@ViewBag.Title'
+    };
+
+
+    $(document).ready(function () {
+
+
+        //confirm("AAAAA");
+        //普通事故保險費率 相加
+        $("#OrdAcciInsRate").bind("blur", function () {
+            if (($(this).val() != "") && ($("#EmployInsRate").val() != "")) {
+                var l_fSum = parseFloat($(this).val()) + parseFloat( $("#EmployInsRate").val() );
+                $("#PersonalInsRate").val(l_fSum);
+                //confirm($("#PersonalInsRate").val());
+            }
+        });
+
+        $("#EmployInsRate").bind("blur", function () {
+            if (($(this).val() != "") && ($("#OrdAcciInsRate").val() != "")) {
+                var l_fSum = parseFloat($(this).val()) + parseFloat( $("#OrdAcciInsRate").val() );
+                $("#PersonalInsRate").val(l_fSum);
+                //confirm($("#PersonalInsRate").val());
+            }
+        });
+
+
+
+        //職業災害保險費率
+        $("#CommuteDisaInsRate").bind("blur", function () {
+            if (($(this).val() != "") && ($("#IndustryDisaInsRate").val() != "")) {
+                var l_fSum = parseFloat($(this).val()) + parseFloat($("#IndustryDisaInsRate").val());
+                $("#OccuDisaInsRate").val(l_fSum);
+                //confirm($("#PersonalInsRate").val());
+            }
+        });
+
+        $("#IndustryDisaInsRate").bind("blur", function () {
+            if (($(this).val() != "") && ($("#CommuteDisaInsRate").val() != "")) {
+                var l_fSum = parseFloat($(this).val()) + parseFloat($("#CommuteDisaInsRate").val());
+                $("#OccuDisaInsRate").val(l_fSum);
+                //confirm($("#PersonalInsRate").val());
+            }
+        });
+
+    });
+
+    //$(function () {
+    //    confirm("AAAAA");
+    //});
+
+
+
+    function JsFunJQValidate_Summary()
+    {
+        /////////////////////////////////////////
+        //confirm("form");
+        var $l_oValidator = $("form#" + PageInfo.PROG_ID).validate({
+            rules: {
+                OrdAcciInsRate: {
+                    required: true
+                    , number: true
+                }
+                , EmployInsRate: {
+                    required: true
+                    , number: true
+                }
+                , PersonalInsRate: {
+                    required: true
+                    , number: true
+                }
+                , LaborBurdenRatio: {
+                    required: true
+                    , number: true
+                }
+                , ComBurdenRatio: {
+                    required: true
+                    , number: true
+                }
+                , GovBurdenRatio: {
+                    required: true
+                    , number: true
+                }
+                , CommuteDisaInsRate: {
+                    required: true
+                    , number: true
+                }
+                , IndustryDisaInsRate: {
+                    required: true
+                    , number: true
+                }
+                , OccuDisaInsRate: {
+                    required: true
+                    , number: true
+                }
+                , OccuDisComBurdenRatio: {
+                    required: true
+                    , number: true
+                }
+                , OnBeginDate: {
+                    required: true
+                }
+                , LaborSubsFund: {
+                    required: true
+                    , number: true
+                }
+                , LaborSubsFundRate: {
+                    required: true
+                    , number: true
+                } 
+                , LaborRetireRate: {
+                    required: true
+                    , number: true
+                } 
+
+            }
+
+            //改用套件的localization.js
+            //, messages: {
+            //    year_month: {
+            //        required: '上傳檔案,年月份必填'
+            //    }
+            //    , upload: {
+            //        required: '未上傳檔案'
+            //    }
+            //}
+
+        });
+
+        //confirm(l_rtnVal.form());
+        if ($l_oValidator.form()) {
+            return true;
+        } else {
+            return false;
+        }
+
+        /////////////////////////////////////////
+
+    }
+
+
+    function JSFunBefore_Post() {
+
+        //confirm("Tol: " + $("#CheckedItems").val());
+        //20210108 CCL- SetFunShopItems();
+
+        //Validation
+        var l_bIsValid = false;
+        l_bIsValid = JsFunJQValidate_Summary();
+        if (l_bIsValid) {
+            JsFunLOADING_SHOW(true);
+        } else {
+            return false; //不Post
+        }
+
+
+    }
+
+    </script>
+
+}
+
+
+

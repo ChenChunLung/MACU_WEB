@@ -1,0 +1,6 @@
+﻿    <td>
+                                        <label class="control-label" for="id_IsDelAllColZero">刪除所有0欄位資料列?</label>
+                                        <div>
+                                            <input type="checkbox" id="ChkIsDelAllZero" name="ChkIsDelAllZero" class="form-control" data-toggle="switch" />
+                                        </div>
+                                    </td>

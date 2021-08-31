@@ -1,0 +1,360 @@
+﻿@model MACU_WEB.Areas.MERP_TCF000.ViewModels.MERP_TCF002_LabInsSetMapCom_EditViewModel
+@* model System.Web.Mvc.SelectList *@
+
+@using MACU_WEB.Models;
+@using MACU_WEB.Areas.MERP_TCF000.ViewModels;
+
+
+
+@{
+    string strPROG_ID = "MERP_TCF002";
+    string strMENU_ID = "MERP_TCF000";
+    ViewBag.Title = "LabInsSetMapCom_Edit";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+@{
+    string strSECTION_TITLE001 = "勞保設定";
+
+    //MERP_TCF002_LabInsSetMapCom_CreateViewModel Model = TempData["LabInsSetMapCom"]
+    //                                                as MERP_TCF002_LabInsSetMapCom_CreateViewModel;
+   
+    List<FA_LaborInsSet> LInsSetModelItems = Model.m_oLaborInsSettings;
+
+
+}
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+            @using (Html.BeginForm("LabInsSetMapCom_Edit", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post,
+                new
+                {
+                    @class = "form-inline form-horizontal style-form",
+                    @role = "form",
+                    @id = strPROG_ID,
+                    @onSubmit = "return JSFunBefore_Post();"
+                }))
+            {
+                <div class="form-group box-fullwidth">
+                    <div class="col-lg-12">
+
+                        <table class="table table-responsive rwd-table">
+                            <tbody>
+
+                                <tr>
+                                    <td colspan="6">
+                                        <h4>
+                                            @Html.Raw("勞保設定對應投保公司設定")
+
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        @Html.Label("LaborInsSetNO_LB", "勞保設定流水號", new { @class = "control-label", @for = "LaborInsSetNO" })
+                                        <div>
+
+                                            @* Html.TextBox("LaborInsSetNO", "", new { @class = "form-control", @placeholder = "Enter LaborInsSetNO" }) *@
+                                            @Html.DropDownList("LaborInsSetNO", Model.m_oLaborInsSetList, new { @class = "control-label" })
+
+                                        </div>
+
+                                    </td>
+                                    <td colspan="3">
+                                        @Html.Label("PlusInsCompany_LB", "加保公司", new { @class = "control-label", @for = "PlusInsCompany" })
+                                        <div>
+
+                                            @Html.TextBox("PlusInsCompany", Model.m_sPlusCompany,
+                                           new {
+                                               @class = "form-control",
+                                               @placeholder = "Enter PlusInsCompany",
+                                               @disabled = "disabled"
+                                           })
+                                            
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="form-group has-success box-fullwidth">
+                    <div class="col-lg-12">
+                        <p>
+                            @* Html.ValidationSummary() *@
+
+                        </p>
+
+                        <button type="submit" class="btn btn-theme">執行更新</button>
+                    </div>
+                    <div class="col-lg-12">
+                        <!-- button type="button" class="btn btn-theme" onclick="JsFunBeforePost_Check2();">Test</button -->
+                    </div>
+                </div>
+
+            }
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- BASIC FORM ELELEMNTS -->
+<div class="row mt">
+    <!-- col-lg-12全佔12行; main-chart 上邊空20px -->
+    <div class="col-lg-12">
+        <div class="form-panel">
+
+            <div style="margin-top: 15px;"></div>
+
+            <!--主檔-->
+            <h2> @strSECTION_TITLE001 </h2>
+            <div class="table-responsive  form-group">
+                <!-- 一定要加boxscroll Div才會出現卷軸 -->
+                <div class="boxscrollV2">
+                    <table class="table table-bordered table-hover rwd-table" id="M_SEQ_NO_1">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1 "> 勞保設定編號</th>
+                                <th class="col-sm-1 "> 勞保設定流水號</th>
+                                <th class="col-sm-1 "> 個人保險費率</th>
+                                <th class="col-sm-1 "> 被保險人負擔比例</th>
+                                <th class="col-sm-1 "> 投保單位負擔比例</th>
+                                <th class="col-sm-1 "> 政府負擔比例</th>
+                                <th class="col-sm-1 "> 職業災害保險費率</th>
+                                <th class="col-sm-1 "> 投保單位負擔比例</th>
+                                <th class="col-sm-1 "> 實施日期</th>
+                                <th class="col-sm-1 "> 勞退保險費率</th>
+                                <th class="col-sm-1 "> 勞保代墊基金</th>
+                                <th class="col-sm-1 "> 勞保代墊基金費率</th>
+                                <th class="col-sm-1 "> 建立日期</th>
+                                <th class="col-sm-1 "> 實施日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int i = 0;}
+
+                            @* foreach (var item in ViewData["Category"] as IEnumerable<FileContent>) *@
+                            @if ((Model != null) &&
+                                 (LInsSetModelItems != null) &&
+                                 (LInsSetModelItems.Count() > 0))
+                            {
+                                foreach (var item in LInsSetModelItems)
+                                {
+                                    i++;
+
+                                    <tr>
+
+                                        <td>
+
+                                            @item.Id
+                                        </td>
+
+                                        <td>
+
+                                            @item.LabInsSetNo
+                                        </td>
+
+                                        <td>
+
+                                            @item.PersonalInsRate
+                                        </td>
+
+
+                                        <td>
+
+                                            @item.LaborBurdenRatio
+                                        </td>
+
+                                        <td>
+
+                                            @item.ComBurdenRatio
+                                        </td>
+
+
+                                        <td>
+
+                                            @item.GovBurdenRatio
+                                        </td>
+
+                                        <td>
+
+                                            @item.OccuDisaInsRate
+                                        </td>
+
+                                        <td>
+
+                                            @item.OccuDisComBurdenRatio
+                                        </td>
+
+                                        <td>
+
+                                            @item.OnBeginDate
+                                        </td>
+
+                                        <td>
+
+                                            @item.LaborRetireRate
+                                        </td>
+
+                                        <td>
+
+                                            @item.LaborSubsFund
+                                        </td>
+
+                                        <td>
+
+                                            @item.LaborSubsFundRate
+                                        </td>
+
+                                        <td>
+
+                                            @item.CreateTime
+                                        </td>
+
+                                        <td>
+
+                                            @item.UpdateTime
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div><!-- /row -->
+
+
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+
+     var PageInfo = {
+            MENU_ID: '@strMENU_ID',
+            PROG_ID: '@strPROG_ID',
+            TITLE_ID: '@ViewBag.Title'
+    };
+
+
+
+
+    //$(function () {
+    //    confirm("AAAAA");
+    //});
+
+
+
+    function JsFunJQValidate_Summary()
+    {
+        /////////////////////////////////////////
+        //confirm("form");
+        var $l_oValidator = $("form#" + PageInfo.PROG_ID).validate({
+            rules: {
+                PlusInsCompany: {
+                    required: true
+                }
+                , LaborInsSetNO: {
+                    required: true
+
+                }
+
+            }
+
+            //改用套件的localization.js
+            //, messages: {
+            //    year_month: {
+            //        required: '上傳檔案,年月份必填'
+            //    }
+            //    , upload: {
+            //        required: '未上傳檔案'
+            //    }
+            //}
+
+        });
+
+        confirm(l_rtnVal.form());
+        if ($l_oValidator.form()) {
+            return true;
+        } else {
+           return false;
+        }
+
+        /////////////////////////////////////////
+
+     }
+
+
+
+    function JSFunBefore_Post() {
+
+        //confirm("Tol: " + $("#CheckedItems").val());
+        //20210108 CCL- SetFunShopItems();
+
+        //Validation
+        var l_bIsValid = false;        
+        l_bIsValid = JsFunJQValidate_Summary();
+        if (l_bIsValid) {
+            JsFunLOADING_SHOW(true);
+        } else {
+
+            return false; //不Post
+        }
+
+
+    }
+
+    $(document).ready(function () {
+
+        //var l_iItemsCount = 0;
+        //var l_iItemsCount = parseInt($("#TolMapSetCount").val());
+
+        //var l_iItemsCount = $("#TolMapSetCount").val();
+        //if (l_iItemsCount == undefined)
+        //    confirm("DB Item Count = " + "Nothing");
+
+        var l_sOrgLInsSetNo = '@Model.m_sOrgLaborInsSetNo'; 
+        $("#LaborInsSetNO option").each(function () {
+            var l_sOptLInsSetNo = $(this).val();           
+            if (l_sOrgLInsSetNo == l_sOptLInsSetNo) {
+                //confirm(l_sOptLInsSetNo);
+                $(this).attr("selected", "selected");
+              
+            }
+
+        });
+
+    });
+
+    
+    </script>
+
+}
+
+
+
+
+
+
+

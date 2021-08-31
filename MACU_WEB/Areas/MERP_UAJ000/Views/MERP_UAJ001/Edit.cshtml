@@ -1,0 +1,243 @@
+﻿@model MACU_WEB.Models.StoreInfo
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_UAJ001";
+    string strMENU_ID = "MERP_UAJ000";
+    ViewBag.Title = "Edit";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+@helper HtmlEditBoxHelper(string p_sAttrName, string p_sHolder, Object Value)
+{
+
+    @Html.TextBox(p_sAttrName, Value, new { @class = "form-control", @placeholder = p_sHolder })
+
+}
+
+@helper HtmlDateBoxHelper(string p_sAttrName, string p_sHolder, Object Value)
+{
+
+    @Html.Raw("<input type='date' class='form-control' id='" + p_sAttrName + "' name='" +
+                  p_sAttrName + "' placeholder='" + p_sHolder  +
+                  "' value='" + Value + "' >")
+
+}
+
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+            @using (Html.BeginForm("Edit", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post, new { @class = "form-inline form-horizontal style-form", @role = "form" }))
+            {
+                <div class="form-group box-fullwidth">
+                    <div class="col-lg-12">
+
+                        <table class="table table-responsive rwd-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_SID">部門編號</label>
+                                        <div>
+                                            @* 用於編輯用  *@
+                                            @Html.Hidden("id", Model.Id)
+
+                                            @HtmlEditBoxHelper("SID", "Enter SID", Model.SID)
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_Name">部門名稱</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("Name", "Enter Name", Model.Name)
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_Kind">部門類別</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("Kind", "Enter Kind", Model.Kind)
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                                <!--      ////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_Memo">部門註解</label>
+                                        <div>
+
+                                            @* Html.ListBox("ShopsSelList", Model, new { @multiple = "multiple" }) *@
+                                            <div>
+
+                                                @HtmlEditBoxHelper("Memo", "Enter Memo", Model.Memo)
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_GroupID">部門群組ID</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("Group_ID", "Enter Group_ID", Model.Group_ID)
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_BranchArea_ID">部門分區ID</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("BranchArea_ID", "Enter BranchArea_ID", Model.BranchArea_ID)
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                                <!--   //////////////////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_OrderAreaID">訂單分區ID</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("OrderArea_ID", "Enter OrderArea_ID", Model.OrderArea_ID)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_ConveyKind_ID">ConveyKindID</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("ConveyKind_ID", "Enter ConveyKind_ID", Model.ConveyKind_ID)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_BeginDate">開店日期</label>
+                                        <div>
+
+                                            @HtmlDateBoxHelper("BeginDate", "Enter BeginDate", Model.BeginDate)
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <!--   //////////////////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_TelPhone">部門電話</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("TelPhone", "Enter TelPhone", Model.TelPhone)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_FaxPhone">部門傳真</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("FaxPhone", "Enter FaxPhone", Model.FaxPhone)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_CellPhone">部門手機</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("CellPhone", "Enter CellPhone", Model.CellPhone)
+                                        </div>
+                                    </td>
+                                    <!--   //////////////////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_Contact">部門聯絡人</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("Contact", "Enter Contact", Model.Contact)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_Address">部門位址</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("Address", "Enter Address", Model.Address)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="id_MobileStoreID">部門MobiID</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("MobileStoreID", "Enter MobileStoreID", Model.MobileStoreID)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--   //////////////////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td colspan="3">
+                                        <label class="control-label" for="id_ManageKind">部門督導</label>
+                                        <div>
+
+                                            @HtmlEditBoxHelper("ManageKind", "Enter ManageKind", Model.ManageKind)
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="form-group has-success box-fullwidth">
+                    <div class="col-lg-12">
+                        <!-- button type="button" class="btn btn-theme" onclick="JSFunBefore_Post();">執行Test</button -->
+                        <!-- button type="submit" class="btn btn-theme" onclick="JsFunLOADING_SHOW(true);">執行新增</button -->
+                        <button type="submit" class="btn btn-theme" onclick="JSFunBefore_Post();">執行更新</button>
+                    </div>
+                </div>
+
+            }
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+        //custom select box
+
+        $(function () {
+            $('select.styled').customSelect();
+        });
+
+        $(document).ready(function () {
+            //使用分頁的標題凍結方式
+
+
+
+
+        });
+
+
+        function JSFunBefore_Post() {
+
+            JsFunLOADING_SHOW(true);
+        }
+
+//////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////
+
+    </script>
+
+}
+
+
+
+

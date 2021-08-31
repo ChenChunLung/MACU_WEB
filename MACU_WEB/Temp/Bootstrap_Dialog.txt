@@ -1,0 +1,103 @@
+﻿		 BootstrapDialog.alert({
+                title: "提示",
+                message: "DB Empty return true!!!",
+                type: BootstrapDialog.TYPE_DANGER,
+                buttonLabel: "確認"
+            });
+		
+		// 取得顯示訊息
+        var oAddShowMsg = new JsFunAddMessage(strCookieCultureValue);
+		
+		JsFunAlert({ title: oAddShowMsg.addDelCtrlErr, message: oAddShowMsg.addNoFieldParam });
+		
+		@* JsFunErrorMsg("查詢資料", 
+		('@Html.DisplayNameFor(model => vmComppaym.POSTING_DATE)' + "-[起始日]不可大於[迄止日]"), 
+		$("input[name='POSTING_DATE_E']")); *@
+		
+		BootstrapDialog.alert({
+                        title: "提示",
+                        message: "已有此公司設定,請改用下方編輯設定 !!!",
+                        type: BootstrapDialog.TYPE_DANGER,
+                        buttonLabel: "確認"
+                    });
+
+
+
+        // 資料刪除檢查
+        function confirmDeleteMsg() {
+            var Comppay_ID = $('input[name*="chkDELETE"]:checked').map(function () {
+                var index = /\d/gi.exec($(this).attr("id"));
+                var Comppay_ID = $('input[name*="[' + index + '].COMPPAY_ID"]').val();
+                return Comppay_ID;
+            }).get().join(", ");
+
+            if (Comppay_ID == "") {
+                BootstrapDialog.alert({
+                    title: '刪除資料',
+                    message: "請先勾選要刪除的資料!!!",
+                    buttonLabel: '確認'
+                });
+            }
+            else {
+                BootstrapDialog.show({
+                    title: '刪除資料',
+                    message: "確定刪除資料???",
+                    type: BootstrapDialog.TYPE_WARNING,
+                    buttons: [{
+                        label: '確認',
+                        action: function (dialogRef) {
+                            var setData = { "COMPPAY_ID": COMPPAY_ID };
+                            $.ajax({
+                                url: "../SYSN410/Delete",
+                                type: 'POST',
+                                dataType: 'json',
+                                data: setData,
+                                success: function (data) {
+
+                                    if (data == "成功")
+                                        OnSuccess();
+                                    else
+                                        OnFailure();
+                                },
+                                error: function () {
+                                    OnFailure();
+                                }
+                            });
+
+                            dialogRef.close();
+                        }
+                    }, {
+                        label: '取消',
+                        action: function (dialogRef) {
+                            dialogRef.close();
+                        }
+                    }]
+                });
+            }
+        }
+
+        // 成功事件
+        function OnSuccess() {
+            BootstrapDialog.show({
+                title: '刪除資料',
+                message: "刪除資料成功!!",
+                buttons: [{
+                    label: '確定',
+                    action: function (dialogRef) {
+                        window.location = "@Url.Action("Index", strPROG_ID)";
+                        //history.go(0);
+                        dialogRef.close();
+                    }
+                }]
+            });
+        }
+
+        // 失敗事件
+        function OnFailure() {
+            BootstrapDialog.alert({
+                title: '刪除資料',
+                message: "刪除資料失敗!!!",
+                type: BootstrapDialog.TYPE_DANGER,
+                buttonLabel: '確定'
+            });
+        }

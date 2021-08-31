@@ -1,0 +1,247 @@
+﻿@model MACU_WEB.Areas.MERP_UAK000.ViewModels.MERP_UAK001_EditViewModel
+
+@using MACU_WEB.Models;
+
+
+
+@{
+    string strPROG_ID = "MERP_UAK001";
+    string strMENU_ID = "MERP_UAK000";
+    ViewBag.Title = "Edit";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+@* helper ShowShopSelOption(string p_sShopID, string p_sShopNa) *@
+
+@{
+
+    HR_ManagerInfo item = Model.m_oHRManager;
+
+}
+
+@helper ShowShopSelOptionEdit(string ShopStr)
+{
+    List<string> l_sShops = ShopStr.Split(',').ToList();
+
+
+    @Html.Raw("<div class='boxscrollV2'><div id='id_SelShopList'>")
+    @Html.Raw("<table class='table table-responsive rwd-table'>")
+    @Html.Raw("<tbody>")
+
+    int l_iIndex = 0;
+    foreach (SelectListItem item in Model.m_oSelShopList)
+    {
+        l_iIndex++;
+        @* Html.CheckBox("SelShopItem") *@
+        @Html.Raw("<tr>")
+        @Html.Raw("<td>")
+        if (l_sShops.Contains(item.Value))
+        {
+            @Html.CheckBox("SelShopItem", true, new { value = item.Value })
+        }
+        else
+        {
+            @Html.CheckBox("SelShopItem", new { value = item.Value })
+        }
+
+        @Html.Raw(item.Text + "   " + item.Value)
+        @Html.Raw("</td>")
+
+        @Html.Raw("</tr>")
+    }
+    @Html.Hidden("CheckedShopItems");
+    @Html.Raw("</tbody>")
+    @Html.Raw("</table>")
+    @Html.Raw("</div></div>")
+
+    //@Html.ListBox()
+}
+
+@helper HtmlEditBoxHelper(string p_sAttrName, string p_sHolder, Object Value)
+{
+
+    @Html.TextBox(p_sAttrName, Value, new { @class = "form-control", @placeholder = p_sHolder })
+
+}
+
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Journals</h4>
+            @using (Html.BeginForm("Edit", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post, new { @class = "form-inline form-horizontal style-form", @role = "form" }))
+            {
+                <div class="form-group box-fullwidth">
+                    <div class="col-lg-12">
+
+                        <table class="table table-responsive rwd-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_ManagerID">督導編號</label>
+                                        <div>
+                                            @* 用於編輯用  *@
+                                            @Html.Hidden("id", item.Id)
+                                            <!--
+                                            <input type="text" class="form-control" id="id_ManagerID" name="ManagerID" placeholder="Enter ManagerID">
+                                            -->
+                                            @HtmlEditBoxHelper("ManagerID", "Enter ManagerID", item.ManagerID)
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_ManagerName">督導名稱</label>
+                                        <div>
+                                            <!--
+                                            <input type="text" class="form-control" id="id_ManagerName" name="ManagerName" placeholder="Enter ManagerName">
+                                            -->
+                                            @HtmlEditBoxHelper("ManagerName", "Enter ManagerName", item.ManagerName)
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_ManagerNickNa">督導匿名</label>
+                                        <div>
+                                            <!--
+                                            <input type="text" class="form-control" id="id_ManagerNickNa" name="ManagerNickNa" placeholder="Enter ManagerNickNa">
+                                            -->
+                                            @HtmlEditBoxHelper("ManagerNickNa", "Enter ManagerNickNa", item.ManagerNickNa)
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                                <!--      ////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_ShopNos">督導部門編號</label>
+                                        <div col-lg-6>
+
+                                            @* Html.ListBox("ShopsSelList", Model, new { @multiple = "multiple" }) *@
+                                            @ShowShopSelOptionEdit(item.ManageShopList)
+
+                                        </div>
+                                        <label class="control-label" for="id_ClearAllShops">取消所有部門選取</label>
+                                        <div>
+                                            <button type="button" class="btn btn-theme" id="id_ClearAllShops" onclick="JsFun_ClearAllShopChkBoxGroup();">取消所有選取</button>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_ManagerTelPhone">督導電話</label>
+                                        <div>
+                                            <!--
+                                            <input type="text" class="form-control" id="id_ManagerTelPhone" name="ManagerTelPhone" placeholder="Enter ManagerTelPhone">
+                                            -->
+                                            @HtmlEditBoxHelper("ManagerTelPhone", "Enter ManagerTelPhone", item.ManagerTelPhone)
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_ManagerMobiPhone">督導手機</label>
+                                        <div>
+                                            <!--
+                                            <input type="text" class="form-control" id="id_ManagerMobiPhone" name="ManagerMobiPhone" placeholder="Enter ManagerMobiPhone">
+                                            -->
+                                            @HtmlEditBoxHelper("ManagerMobiPhone", "Enter ManagerMobiPhone", item.ManagerMobiPhone)
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                                <!--   //////////////////////////////////////////////////////////////////////////   -->
+                                <tr>
+                                    <td colspan="3">
+                                        <label class="control-label" for="id_ManageBranchID">區域ID</label>
+                                        <div>
+                                            <!--
+                                            <input type="text" class="form-control" id="id_ManageBranchID" name="ManageBranchID" placeholder="Enter ManageBranchID">
+                                            -->
+                                            @HtmlEditBoxHelper("ManageBranchID", "Enter ManageBranchID", item.ManageBranchID)
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="form-group has-success box-fullwidth">
+                    <div class="col-lg-12">
+                        <!-- button type="button" class="btn btn-theme" onclick="JSFunBefore_Post();">執行Test</button -->
+                        <!-- button type="submit" class="btn btn-theme" onclick="JsFunLOADING_SHOW(true);">執行新增</button -->
+                        <button type="submit" class="btn btn-theme" onclick="JSFunBefore_Post();">執行更新</button>
+                    </div>
+                </div>
+
+            }
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+
+
+
+<script type="text/javascript">
+//custom select box
+
+$(function () {
+$('select.styled').customSelect();
+});
+
+$(document).ready(function () {
+//使用分頁的標題凍結方式
+
+//$('button[name="fun_button"]').on('click',
+//    function (e) {
+//        JsFunLOADING_SHOW(true);
+@*
+    JsFunErrorMsg('@("SearchData".ToAutoMultiLang())', '@(string.Format("ValRequired".ToAutoMultiLang(), "Userid".ToAutoMultiLang()))', userId);
+*@
+
+//    return true;
+//    });
+
+
+    });
+
+
+    function JsFun_ClearAllShopChkBoxGroup() {
+        var $l_oSelShops = $("#id_SelShopList input[type='checkbox']");
+        $l_oSelShops.each(function () {
+            $(this).prop("checked", false);
+        });
+    }
+
+    function JSFunBefore_Post() {
+        //CheckedItems
+        var l_sRtnShopsStr = "";
+        $("#CheckedShopItems").val(""); //init
+
+        var $l_oSelShops = $("#id_SelShopList input[type='checkbox']:checked");
+        $l_oSelShops.each(function () {
+            var l_sTmp = $(this).val();
+            l_sRtnShopsStr += l_sTmp + ",";
+            //confirm(l_sRtnShopsStr);
+        });
+        l_sRtnShopsStr = l_sRtnShopsStr.substring(0, l_sRtnShopsStr.length - 1);
+
+        $("#CheckedShopItems").val(l_sRtnShopsStr);
+        //confirm("Tol: " + $("#CheckedItems").val());
+
+        JsFunLOADING_SHOW(true);
+    }
+
+//////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////
+
+</script>
+
+
+

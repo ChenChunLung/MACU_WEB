@@ -1,0 +1,43 @@
+﻿        function OnSuccess() {
+            // $('button[name="Update"]').prop("disabled", true);
+            JsFunLOADING_SHOW(false);
+            BootstrapDialog.show({
+                title: '@("EditData".ToAutoMultiLang())',
+                message: '@("EditSuccess".ToAutoMultiLang())!!',
+                buttons: [{
+                    label: '@("BackSearchPage".ToAutoMultiLang())',
+                    action: function (dialogRef) {
+                        JsFunLOADING_SHOW(true);
+                        window.location = "@Url.Action("Index", strPROG_ID)";
+                        dialogRef.close();
+                    }
+                }, {
+                    label: '@("Continue_Edit".ToAutoMultiLang())',
+                    action: function (dialogRef) {
+                        dialogRef.close();
+                    }
+                }]
+            });
+        }
+
+        function OnFailure() {
+            JsFunLOADING_SHOW(false);
+            BootstrapDialog.alert({
+                title: '@("EditData".ToAutoMultiLang())',
+                message: "@("EditFailure".ToAutoMultiLang())!!!",
+                type: BootstrapDialog.TYPE_DANGER,
+                buttonLabel: '@("Submit".ToAutoMultiLang())'
+            });
+        }
+
+		function FormOnBegin() {
+            // 2017-11-09 密碼設定為必填欄位
+            if ($("[name='tena_per.PWD']").val() != "") {
+                if ($("[name='tena_per.PWD']").val().length < 4) {
+                    JsFunErrorMsg('@("EditData".ToAutoMultiLang())', '@("ValLength_TENA_PER_PWD".ToAutoMultiLang())', $("input[name='tena_per.PWD']"));
+                    return false;
+                }
+            }
+
+            return true;
+        }

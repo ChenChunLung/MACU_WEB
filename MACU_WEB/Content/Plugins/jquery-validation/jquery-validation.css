@@ -1,0 +1,70 @@
+﻿/* 此範例在jquery-validation zip檔的demo/site-demos.css內 */
+
+/* 會亂掉 CCL-
+#field { margin-left: .5em; float: left; }
+
+
+#field, label { float: left; font-family: Arial, Helvetica, sans-serif; font-size: small; }
+
+br { clear: both; }
+
+input { border: 1px solid black; margin-bottom: .5em;  }
+*/
+
+input.error { 
+    border: 1px solid red; 
+
+}
+
+/* 圖片用block */
+label.error {
+    background: url("./demo/images/unchecked.gif") no-repeat 0px 0px;
+    padding-left: 16px;
+    margin-left: .3em;
+    padding-bottom: 2px;
+    font-weight: bold;
+    color: #EA5200;
+}
+
+
+/* 文字用inline */
+/*
+label.error {
+    display: inline;
+    font-weight: bold;
+    color: #EA5200;
+}
+*/
+
+/* 圖片用block */
+label.valid {
+    background: url('./demo/images/checked.gif') no-repeat 0px 0px;
+    display: block;
+    width: 16px;
+    height: 16px;
+}
+
+
+
+label.checked {
+    background: url("./demo/images/checked.gif") no-repeat 0px 0px;
+}
+
+/* //////////////Str  Jquery-Validatation CSS //////////////////////////////////////////////////////////// */
+form label {
+    display: inline-block;
+    width: 100px;
+}
+
+.error {
+    color: red;
+    margin-left: 5px;
+}
+
+/* 文字用inline
+label.error {
+    display: inline;
+}
+*/
+/* //////////////End  Jquery-Validatation CSS //////////////////////////////////////////////////////////// */
+

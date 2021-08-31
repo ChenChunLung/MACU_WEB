@@ -1,0 +1,55 @@
+﻿CREATE TABLE [dbo].[FA_FaJournal] (
+    [Id]                  INT              IDENTITY (1, 1) NOT NULL,
+    [SubpType]            INT              NULL,
+    [DebitAmount]         NVARCHAR (20)    NULL,
+    [CreditAmount]        NVARCHAR (20)    NULL,
+    [CurrencyName]        NVARCHAR (10)    NULL,
+    [FiscalYear]          INT              NULL,
+    [AccountPeriod]       INT              NULL,
+    [GUID]                UNIQUEIDENTIFIER NULL,
+    [SubpDate]            NVARCHAR (20)    NULL,
+    [SubpNo]              NVARCHAR (50)    NULL,
+    [SubpSummary]         NVARCHAR (MAX)   NULL,
+    [SubjectName]         NVARCHAR (50)    NULL,
+    [AccountNo]           NVARCHAR (20)    NULL,
+    [DetailAccountNo]     NVARCHAR (20)    NULL,
+    [DetailSubjectName]   NVARCHAR (50)    NULL,
+    [DepartNo]            NVARCHAR (20)    NULL,
+    [DepartName]          NVARCHAR (50)    NULL,
+    [ProjectNo]           NVARCHAR (20)    NULL,
+    [ProjectAbbr]         NVARCHAR (50)    NULL,
+    [ObjectCateg]         NVARCHAR (10)    NULL,
+    [ObjectNo]            NVARCHAR (10)    NULL,
+    [CurrencyNo]          NVARCHAR (5)     NULL,
+    [ExchangeRate]        INT              NULL,
+    [OriginCurrency]      NVARCHAR (20)    NULL,
+    [LocalCurrencyAmount] NVARCHAR (20)    NULL,
+    [Spare1No]            NVARCHAR (10)    NULL,
+    [Spare1Abbr]          NVARCHAR (10)    NULL,
+    [Spare2No]            NVARCHAR (10)    NULL,
+    [Spare2Abbr]          NVARCHAR (10)    NULL,
+    [Spare3No]            NVARCHAR (10)    NULL,
+    [Spare3Abbr]          NVARCHAR (10)    NULL,
+    [Spare4No]            NVARCHAR (10)    NULL,
+    [Spare4Abbr]          NVARCHAR (10)    NULL,
+    [Spare5No]            NVARCHAR (10)    NULL,
+    [Spare5Abbr]          NVARCHAR (10)    NULL,
+    [Summary1]            NVARCHAR (MAX)   NULL,
+    [AccountSubjects]     NVARCHAR (MAX)   NULL,
+    [Summary]             NVARCHAR (MAX)   NULL,
+    [Category]            NVARCHAR (20)    NULL,
+    [SubjectAlias]        NVARCHAR (10)    NULL,
+    [IsValid]             INT              DEFAULT ((1)) NOT NULL,
+    [CreateTime]          DATETIME         NOT NULL,
+    [UpdateTime]          DATETIME         NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+class="table table-responsive rwd-table"
+
+           <div class="form-group has-success">
+                    <div class="col-lg-12">                       
+                        <button type="submit" class="btn btn-theme">執行轉換</button>                                   
+                    </div>
+            </div>
+

@@ -1,0 +1,386 @@
+﻿
+@model MACU_WEB.Areas.MERP_TCC000.ViewModels.MERP_TCC001_DetailsViewModel
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_TCC001";
+    string strMENU_ID = "MERP_TCC000";
+    ViewBag.Title = "Journals";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Journals</h4>
+            @using (Html.BeginForm("Journals", strPROG_ID, new { area = strMENU_ID }, FormMethod.Post, new { @class = "form-inline form-horizontal style-form", @role = "form" }))
+            {
+                <div class="form-group box-fullwidth">
+                    <div class="col-lg-12">
+
+                        <table class="table table-responsive rwd-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="id_StartDate">開始日期</label>
+                                        <div>
+                                            <input type="date" class="form-control" id="id_StartDate" name="na_StartDate" placeholder="Enter startdate">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_EndDate">結束日期</label>
+                                        <div>
+                                            <input type="date" class="form-control" id="id_EndDate" name="na_EndDate" placeholder="Enter enddate">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="control-label" for="id_IsDelAllColZero">刪除所有0欄位資料列?</label>
+                                        <div>
+                                            <input type="checkbox" id="ChkIsDelAllZero" name="ChkIsDelAllZero" class="form-control" data-toggle="switch" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="form-group has-success box-fullwidth">
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btn-theme" onclick="JsFunLOADING_SHOW(true);">執行轉換</button>
+                    </div>
+                </div>
+
+            }
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+<!-- BASIC FORM ELELEMNTS -->
+<div class="row mt">
+    <!-- col-lg-12全佔12行; main-chart 上邊空20px -->
+    <div class="col-lg-12">
+        <div class="form-panel">
+
+            <!-- form class="form-horizontal style-form" method="get" -->
+            <h2>@Model.m_AccountPeroid 月會計帳</h2>
+            <!-- div class="table-responsive  form-group" -->
+
+            <div class="table-responsive  form-group" id="T_TCC_TAB_1">
+                <!-- table class="table table-hover rwd-table" id="M_TCC_TAB_1" -->
+
+                <div class="boxscroll">
+
+                    <table class="table table-hover rwd-table">
+                        <thead>
+                            <tr>
+                                <!-- Total 39行 Cols + IsValid,createTime,updateTime -->
+                                <th class="col-sm-3 "> 編號</th>
+                                <th class="col-sm-3 "> 傳票類別</th>
+                                <th class="col-sm-3 "> 借方金額</th>
+                                <th class="col-sm-3 "> 貸方金額</th>
+                                <th class="col-sm-3 "> 幣別</th>
+                                <th class="col-sm-3 "> 會計年度</th>
+                                <th class="col-sm-3 "> 會計期別</th>
+                                <th class="col-sm-3 "> GUID</th>
+                                <th class="col-sm-3 "> 傳票日期</th>
+                                <th class="col-sm-3 "> 傳票號碼</th>
+                                <th class="col-sm-3 "> 傳票摘要</th>
+                                <th class="col-sm-3 "> 科目名稱</th>
+                                <th class="col-sm-3 "> 科目編號</th>
+                                <th class="col-sm-3 "> 明細科目編號</th>
+                                <th class="col-sm-3 "> 明細科目名稱</th>
+                                <th class="col-sm-3 "> 部門代號</th>
+                                <th class="col-sm-3 "> 部門簡稱</th>
+                                <th class="col-sm-3 "> 專案代號</th>
+                                <th class="col-sm-3 "> 專案簡稱</th>
+                                <th class="col-sm-3 "> 對象類別</th>
+                                <th class="col-sm-3 "> 對象編號</th>
+                                <th class="col-sm-3 "> 幣別代號</th>
+                                <th class="col-sm-3 "> 匯率</th>
+                                <th class="col-sm-3 "> 原幣金額</th>
+                                <th class="col-sm-3 "> 本幣金額</th>
+                                <th class="col-sm-1 "> 備用1編號</th>
+                                <th class="col-sm-1 "> 備用1簡稱</th>
+                                <th class="col-sm-1 "> 備用2編號</th>
+                                <th class="col-sm-1 "> 備用2簡稱</th>
+                                <th class="col-sm-1 "> 備用3編號</th>
+                                <th class="col-sm-1 "> 備用3簡稱</th>
+                                <th class="col-sm-1 "> 備用4編號</th>
+                                <th class="col-sm-1 "> 備用4簡稱</th>
+                                <th class="col-sm-1 "> 備用5編號</th>
+                                <th class="col-sm-1 "> 備用5簡稱</th>
+                                <th class="col-sm-3 "> 摘要1</th>
+                                <th class="col-sm-3 "> 會計科目</th>
+                                <th class="col-sm-3 "> 摘要</th>
+                                <th class="col-sm-3 "> 類別</th>
+                                <th class="col-sm-3 "> 科目別名</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int i = 0;}
+                            @foreach (var item in Model.m_FaJournalList)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Id
+                                    </td>
+                                    <td>
+                                        @item.SubpType
+                                    </td>
+                                    <td>
+                                        @item.DebitAmount
+                                    </td>
+                                    <td>
+                                        @item.CreditAmount
+                                    </td>
+                                    <td>
+                                        @item.CurrencyName
+                                    </td>
+                                    <td>
+                                        @item.FiscalYear
+                                    </td>
+                                    <td>
+                                        @item.AccountPeriod
+                                    </td>
+                                    <td>
+                                        @item.GUID
+                                    </td>
+                                    <td>
+                                        @item.SubpDate
+                                    </td>
+                                    <td>
+                                        @item.SubpNo
+                                    </td>
+                                    <td>
+                                        @item.SubpSummary
+                                    </td>
+                                    <td>
+                                        @item.SubjectName
+                                    </td>
+                                    <td>
+                                        @item.AccountNo
+                                    </td>
+                                    <td>
+                                        @item.DetailAccountNo
+                                    </td>
+                                    <td>
+                                        @item.DetailSubjectName
+                                    </td>
+                                    <td>
+                                        @item.DepartNo
+                                    </td>
+                                    <td>
+                                        @item.DepartName
+                                    </td>
+                                    <td>
+                                        @item.ProjectNo
+                                    </td>
+                                    <td>
+                                        @item.ProjectAbbr
+                                    </td>
+                                    <td>
+                                        @item.ObjectCateg
+                                    </td>
+                                    <td>
+                                        @item.ObjectNo
+                                    </td>
+                                    <td>
+                                        @item.CurrencyNo
+                                    </td>
+                                    <td>
+                                        @item.ExchangeRate
+                                    </td>
+                                    <td>
+                                        @item.OriginCurrency
+                                    </td>
+                                    <td>
+                                        @item.LocalCurrencyAmount
+                                    </td>
+                                    <td>
+                                        @item.Spare1No
+                                    </td>
+                                    <td>
+                                        @item.Spare1Abbr
+                                    </td>
+                                    <td>
+                                        @item.Spare2No
+                                    </td>
+                                    <td>
+                                        @item.Spare2Abbr
+                                    </td>
+                                    <td>
+                                        @item.Spare3No
+                                    </td>
+                                    <td>
+                                        @item.Spare3Abbr
+                                    </td>
+                                    <td>
+                                        @item.Spare4No
+                                    </td>
+                                    <td>
+                                        @item.Spare4Abbr
+                                    </td>
+                                    <td>
+                                        @item.Spare5No
+                                    </td>
+                                    <td>
+                                        @item.Spare5Abbr
+                                    </td>
+                                    <td>
+                                        @item.Summary1
+                                    </td>
+                                    <td>
+                                        @item.AccountSubjects
+                                    </td>
+                                    <td>
+                                        @item.Summary
+                                    </td>
+                                    <td>
+                                        @item.Category
+                                    </td>
+                                    <td>
+                                        @item.SubjectAlias
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- /form -->
+
+        </div>
+
+    </div><!-- /col-lg-12 -->
+
+</div><!-- /row -->
+<!-- INPUT MESSAGES -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Input Messages</h4>
+
+            @using (Html.BeginForm("Details", strPROG_ID, FormMethod.Get, new { @class = "form-horizontal tasi-form" }))
+            {
+                <div class="form-group has-success">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Input with success</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputSuccess">
+                    </div>
+                </div>
+                <div class="form-group has-warning">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputWarning">Input with warning</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputWarning">
+                    </div>
+                </div>
+                <div class="form-group has-error">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputError">Input with error</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputError">
+                    </div>
+                </div>
+            }
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+<!-- INPUT MESSAGES -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Checkboxes, Radios & Selects</h4>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    Option one is this and that&mdash;be sure to include why it's great
+                </label>
+            </div>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                    Option one is this and that&mdash;be sure to include why it's great
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                    Option two can be something else and selecting it will deselect option one
+                </label>
+            </div>
+
+            <hr>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+            </label>
+
+            <hr>
+            <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <select multiple class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+
+</div><!-- /row -->
+
+
+
+<script type="text/javascript">
+    //custom select box
+
+    $(function () {
+        $('select.styled').customSelect();
+    });
+
+    $(document).ready(function () {
+        //使用分頁的標題凍結方式
+
+        //$('button[name="fun_button"]').on('click',
+        //    function (e) {
+        //        JsFunLOADING_SHOW(true);
+                @*
+                JsFunErrorMsg('@("SearchData".ToAutoMultiLang())', '@(string.Format("ValRequired".ToAutoMultiLang(), "Userid".ToAutoMultiLang()))', userId);
+                *@
+
+        //    return true;
+        //    });
+
+
+    });
+
+</script>
+
+
+

@@ -1,0 +1,248 @@
+﻿@model  IEnumerable<MACU_WEB.Models.HR_ManagerInfo>
+
+@using MACU_WEB.Models;
+
+
+@{
+    string strPROG_ID = "MERP_UAK001";
+    string strMENU_ID = "MERP_UAK000";
+    ViewBag.Title = "Index";
+    //ViewBag.Title = strPROG_ID.ToAutoMultiLang() + " - " + "PageQ".ToAutoMultiLang();
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<!-- INLINE FORM ELELEMNTS -->
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb">
+                <i class="fa fa-angle-right"></i> @strPROG_ID
+                <i class="fa fa-angle-right"></i> @ViewBag.Title
+            </h4>
+
+            <div class="form-group box-fullwidth">
+                <div class="col-lg-12">
+
+                    <table class="table table-responsive rwd-table">
+                        <tbody>
+                            <tr>
+                                <td colspan="4">
+                                    <label class="control-label" for="Create">開始新增</label>
+                                    <div>
+                                        @Html.ActionLink("新增督導", "Create", strPROG_ID, new { area = strMENU_ID }, new { @class = "btn btn-primary" })
+
+                                    </div>
+                                </td>
+
+
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+        </div><!-- /form-panel -->
+    </div><!-- /col-lg-12 -->
+</div><!-- /row -->
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- BASIC FORM ELELEMNTS -->
+<div class="row mt">
+    <!-- col-lg-12全佔12行; main-chart 上邊空20px -->
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i> @strPROG_ID </h4>
+
+
+            <div style="margin-top: 15px;"></div>
+
+
+            <!--主檔-->
+            <h2> @strPROG_ID </h2>
+            <div class="table-responsive  form-group">
+                <!-- 一定要加boxscroll Div才會出現卷軸 -->
+                <div class="boxscroll">
+                    <table class="table table-bordered table-hover rwd-table" id="M_SEQ_NO_1">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1 "> Id</th>
+                                <th class="col-sm-1 "> 督導編號</th>
+                                <th class="col-sm-1 "> 督導名稱</th>
+                                <th class="col-sm-1 "> 督導暱稱</th>
+                                <th class="col-sm-1 "> 督導電話</th>
+                                <th class="col-sm-1 "> 督導手機</th>
+                                <th class="col-sm-1 "> 督導分區</th>
+                                <th class="col-sm-1 "> 督導部門</th>
+                                <th class="col-sm-1 "> 編輯督導</th>
+                                <th class="col-sm-1 "> 刪除督導</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int i = 0;}
+
+                            @* foreach (var item in ViewData["Category"] as IEnumerable<FileContent>) *@
+
+                            @if ((Model != null) && Model.Count() > 0)
+                            {
+
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>
+
+                                            @item.Id
+                                        </td>
+
+                                        <td>
+
+                                            @item.ManagerID
+                                        </td>
+
+
+                                        <td>
+
+                                            @item.ManagerName
+                                        </td>
+
+                                        <td>
+
+                                            @item.ManagerNickNa
+                                        </td>
+
+
+                                        <td>
+
+                                            @item.ManagerTelPhone
+                                        </td>
+
+                                        <td>
+
+                                            @item.ManagerMobiPhone
+                                        </td>
+
+                                        <td>
+
+                                            @item.ManageBranchID
+                                        </td>
+
+
+                                        <td>
+
+                                            @item.ManageShopList
+                                        </td>
+
+                                        <td>
+
+                                            @Html.ActionLink("編輯督導", "Edit", strPROG_ID, new { id = item.Id, area = strMENU_ID }, new { @class = "btn btn-primary" })
+                                        </td>
+
+                                        <td>
+                                            @Html.ActionLink("刪除督導", "Delete", strPROG_ID, new { id = item.Id, area = strMENU_ID }, new { @class = "btn btn-danger" })
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            }
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div><!-- /row -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- INLINE FORM ELELEMNTS -->
+@*
+    <div class="row mt">
+        <div class="col-lg-12">
+            <div class="form-panel">
+
+                <div class="form-group box-fullwidth">
+                    <div class="col-lg-12">
+
+                        <table id="MyGrid"></table>
+                        <div id="pager"></div>
+                    </div>
+
+                </div>
+
+
+            </div><!-- /form-panel -->
+        </div><!-- /col-lg-12 -->
+    </div><!-- /row -->
+*@
+
+@section JSPartCode {
+
+    <script type="text/javascript">
+        //alert("AAAA");
+        $(document).ready(function () {
+            //使用分頁的標題凍結方式
+
+            @*
+            $("#MyGrid").jqGrid({
+                url: '@Url.Action("QueryTable", strPROG_ID, new { area = strMENU_ID })',
+                datatype: 'json',
+                jsonReader: {
+                    repeatitems: false
+                },
+                mtype: 'GET',
+                colModel: [
+                    { name: 'Id', label: 'ID', width: 200 },
+                    { name: 'ManagerID', label: '督導工號' },
+                    { name: 'ManagerName', label: '督導名稱' },
+                    { name: 'ManagerNickNa', label: '督導暱稱' },
+                    { name: 'ManagerTelPhone', label: '督導電話', sorttype: 'number' },
+                    { name: 'ManagerMobiPhone', label: '督導手機', sorttype: 'number' },
+                    { name: 'ManageBranchID', label: '督導分區', sorttype: 'number' },
+                    { name: 'ManageShopList', label: '督導部門', sorttype: 'number' },
+
+                ],
+                pager: '#pager',
+                width: '1000',
+                height: 'auto',
+                rowNum: 10,
+                rowList: [5,10,20,50],
+                sortname: 'Name',
+                sortorder: "asc",
+                viewrecords: true,
+                caption: '督導 清單',
+                loadonce: true,
+                //////////////////////////
+                toolbar: [true, "top"],
+                toppager: true,
+                pgbuttons: true,
+                pginput: true,
+                gridview: true,
+                altclass: 'altRowsColour',
+                width: 'auto',
+                height: 'auto'
+
+
+            }).navGrid('#pager', { add: true, edit: true, del: true, search: false, refresh: false });
+            *@
+
+        });
+
+
+
+
+    </script>
+
+}
+
+
+
+

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1300
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MACU_WEB", "MACU_WEB\MACU_WEB.csproj", "{183F3F3B-AA3D-4763-A184-D9CB78F8423B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5AA09E50-9C58-4C17-94D7-4E79C2C2756E} = {5AA09E50-9C58-4C17-94D7-4E79C2C2756E}
+		{6CD79675-9485-43DD-A4FB-DC91DBB78B2C} = {6CD79675-9485-43DD-A4FB-DC91DBB78B2C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MACU_WEB.Tests", "MACU_WEB.Tests\MACU_WEB.Tests.csproj", "{547252C5-E9E8-440A-AF93-6787F6C13150}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MACU_WEB.MERP.MVC.Common", "MACU_WEB.MERP.MVC.Model.Common\MACU_WEB.MERP.MVC.Common.csproj", "{5AA09E50-9C58-4C17-94D7-4E79C2C2756E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MACU_WEB.MERP.MVC.Model", "MACU_WEB.MERP.MVC.Model", "{0F66BAC1-DFE7-4B12-9590-4D2557073EE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MACU_WEB.MERP.MVC.Model", "MACU_WEB.MERP.MVC.Model\MACU_WEB.MERP.MVC.Model.csproj", "{6CD79675-9485-43DD-A4FB-DC91DBB78B2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{183F3F3B-AA3D-4763-A184-D9CB78F8423B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{183F3F3B-AA3D-4763-A184-D9CB78F8423B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{183F3F3B-AA3D-4763-A184-D9CB78F8423B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{183F3F3B-AA3D-4763-A184-D9CB78F8423B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{547252C5-E9E8-440A-AF93-6787F6C13150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{547252C5-E9E8-440A-AF93-6787F6C13150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{547252C5-E9E8-440A-AF93-6787F6C13150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{547252C5-E9E8-440A-AF93-6787F6C13150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AA09E50-9C58-4C17-94D7-4E79C2C2756E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA09E50-9C58-4C17-94D7-4E79C2C2756E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AA09E50-9C58-4C17-94D7-4E79C2C2756E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AA09E50-9C58-4C17-94D7-4E79C2C2756E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CD79675-9485-43DD-A4FB-DC91DBB78B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD79675-9485-43DD-A4FB-DC91DBB78B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD79675-9485-43DD-A4FB-DC91DBB78B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD79675-9485-43DD-A4FB-DC91DBB78B2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6CD79675-9485-43DD-A4FB-DC91DBB78B2C} = {0F66BAC1-DFE7-4B12-9590-4D2557073EE1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5070035-08B3-4FD8-B6D1-C9033F6EC7B6}
+	EndGlobalSection
+EndGlobal
